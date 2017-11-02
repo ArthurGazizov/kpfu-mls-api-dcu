@@ -13,5 +13,22 @@
     <artifactId>kpfu-mls-api-dcu-converter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    
+    <dependencies>
+        <dependency>
+            <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+            <artifactId>kpfu-mls-api-dcu-dto</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+            <artifactId>kpfu-mls-api-dcu-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+        </dependency>
+    </dependencies>
 </project>

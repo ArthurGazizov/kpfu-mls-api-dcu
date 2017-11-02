@@ -13,5 +13,10 @@
     <artifactId>kpfu-mls-api-dcu-validator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    
+    <dependencies>
+        <dependency>
+            <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+            <artifactId>kpfu-mls-api-dcu-dto</artifactId>
+        </dependency>
+    </dependencies>
 </project>
