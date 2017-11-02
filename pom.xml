@@ -13,10 +13,56 @@
     </parent>
 
     <modules>
+        <module>kpfu-mls-api-dcu-rest</module>
         <module>kpfu-mls-api-dcu-dto</module>
         <module>kpfu-mls-api-dcu-model</module>
         <module>kpfu-mls-api-dcu-dao</module>
         <module>kpfu-mls-api-dcu-server</module>
         <module>kpfu-mls-api-dcu-client</module>
+        <module>kpfu-mls-api-dcu-converter</module>
+        <module>kpfu-mls-api-dcu-validator</module>
+        <module>kpfu-mls-api-dcu-util</module>
+        <module>kpfu-mls-api-dcu-exception</module>
+        <module>kpfu-mls-api-dcu-web-utils</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+                <artifactId>kpfu-mls-api-dcu-rest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+                <artifactId>kpfu-mls-api-dcu-dto</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+                <artifactId>kpfu-mls-api-dcu-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+                <artifactId>kpfu-mls-api-dcu-dao</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+                <artifactId>kpfu-mls-api-dcu-server</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+                <artifactId>kpfu-mls-api-dcu-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+                <artifactId>kpfu-mls-api-dcu-converter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
