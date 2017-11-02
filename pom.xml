@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <artifactId>kpfu-mls-api-dcu</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+        <artifactId>kpfu-tools-arthur-gazizov-machine-learning-parent-pom</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <modules>
+        <module>kpfu-mls-api-dcu-dto</module>
+        <module>kpfu-mls-api-dcu-model</module>
+        <module>kpfu-mls-api-dcu-dao</module>
+        <module>kpfu-mls-api-dcu-server</module>
+        <module>kpfu-mls-api-dcu-client</module>
+    </modules>
+</project>
