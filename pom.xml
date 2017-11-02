@@ -63,6 +63,26 @@
                 <artifactId>kpfu-mls-api-dcu-converter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+                <artifactId>kpfu-mls-api-dcu-validator</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+                <artifactId>kpfu-mls-api-dcu-util</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+                <artifactId>kpfu-mls-api-dcu-exception</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+                <artifactId>kpfu-mls-api-dcu-web-utils</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>
