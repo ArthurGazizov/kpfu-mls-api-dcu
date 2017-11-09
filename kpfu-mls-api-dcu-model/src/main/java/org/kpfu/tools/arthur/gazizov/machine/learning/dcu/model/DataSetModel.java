@@ -4,8 +4,7 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model;
  * @author Arthur Gazizov (Cinarra Systems)
  * Created on 03.11.17.
  */
-public class DataSetModel extends BaseModel {
-  private Long id;
+public class DataSetModel extends BaseEntityModel {
   private String name;
 
   public Long getId() {
@@ -16,20 +15,30 @@ public class DataSetModel extends BaseModel {
     return name;
   }
 
+  public void setName(String name) {
+    this.name = name;
+  }
+
   public static final class Builder {
-    protected MetaInfoModel metaInfoEntity;
-    private Long id;
+    protected MetaInfoModel metaInfoModel;
+    protected Long id;
+    protected Boolean isDeleted;
     private String name;
 
     private Builder() {
     }
 
-    public static Builder aDataSetEntity() {
+    public static Builder aDataSetModel() {
       return new Builder();
     }
 
-    public Builder metaInfoEntity(MetaInfoModel metaInfoEntity) {
-      this.metaInfoEntity = metaInfoEntity;
+    public Builder name(String name) {
+      this.name = name;
+      return this;
+    }
+
+    public Builder metaInfoModel(MetaInfoModel metaInfoModel) {
+      this.metaInfoModel = metaInfoModel;
       return this;
     }
 
@@ -38,17 +47,18 @@ public class DataSetModel extends BaseModel {
       return this;
     }
 
-    public Builder name(String name) {
-      this.name = name;
+    public Builder isDeleted(Boolean isDeleted) {
+      this.isDeleted = isDeleted;
       return this;
     }
 
     public DataSetModel build() {
-      DataSetModel dataSetEntity = new DataSetModel();
-      dataSetEntity.metaInfoEntity = this.metaInfoEntity;
-      dataSetEntity.name = this.name;
-      dataSetEntity.id = this.id;
-      return dataSetEntity;
+      DataSetModel dataSetModel = new DataSetModel();
+      dataSetModel.setName(name);
+      dataSetModel.setMetaInfoModel(metaInfoModel);
+      dataSetModel.setId(id);
+      dataSetModel.isDeleted = this.isDeleted;
+      return dataSetModel;
     }
   }
 }

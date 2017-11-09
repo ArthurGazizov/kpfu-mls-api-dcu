@@ -15,12 +15,24 @@ public class MetaInfoModel implements Model {
     return createdTs;
   }
 
+  public void setCreatedTs(LocalDateTime createdTs) {
+    this.createdTs = createdTs;
+  }
+
   public LocalDateTime getUpdatedTs() {
     return updatedTs;
   }
 
+  public void setUpdatedTs(LocalDateTime updatedTs) {
+    this.updatedTs = updatedTs;
+  }
+
   public LocalDateTime getDeletedTs() {
     return deletedTs;
+  }
+
+  public void setDeletedTs(LocalDateTime deletedTs) {
+    this.deletedTs = deletedTs;
   }
 
   public static final class Builder {

@@ -32,9 +32,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot</artifactId>
                 <version>1.3.5.RELEASE</version>
-                <scope>test</scope>
             </dependency>
-
+            <!--<dependency>-->
+                <!--<groupId>org.springframework</groupId>-->
+                <!--<artifactId>spring-context</artifactId>-->
+                <!--<version>1.3.5.RELEASE</version>-->
+            <!--</dependency>-->
             <!--submodules-->
             <dependency>
                 <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
