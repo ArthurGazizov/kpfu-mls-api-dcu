@@ -2,7 +2,10 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.config;
 
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.factory.ConverterFactory;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.factory.ConverterFactoryImpl;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.impl.DataSetConverterImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.impl.MetaInfoConverterImpl;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.DataSetConverter;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.MetaInfoConverter;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.base.Converter;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.Dto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.Model;
@@ -23,7 +26,12 @@ public class ConverterConfig {
   }
 
   @Bean
-  public Converter metaInfoConverter() {
+  public MetaInfoConverter metaInfoConverter() {
     return new MetaInfoConverterImpl();
+  }
+
+  @Bean
+  public DataSetConverter dataSetConverter() {
+    return new DataSetConverterImpl();
   }
 }

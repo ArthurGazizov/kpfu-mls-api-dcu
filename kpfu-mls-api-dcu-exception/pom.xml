@@ -13,5 +13,10 @@
     <artifactId>kpfu-mls-api-dcu-exception</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+    </dependencies>
 </project>

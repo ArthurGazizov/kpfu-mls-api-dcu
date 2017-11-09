@@ -13,5 +13,100 @@
     <artifactId>kpfu-mls-api-dcu-dao</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    
+    <properties>
+        <dao.sql.url>jdbc:postgresql://localdockerhost:5432/kpfu_dcu</dao.sql.url>
+        <dao.sql.username>admin</dao.sql.username>
+        <dao.sql.password>t110aspirin</dao.sql.password>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jooq</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+            <artifactId>kpfu-mls-api-dcu-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>3.7.1</version>
+                <configuration>
+                    <jdbc>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>${dao.sql.url}</url>
+                        <user>${dao.sql.username}</user>
+                        <password>${dao.sql.password}</password>
+                    </jdbc>
+                    <generator>
+                        <database>
+                            <name>org.jooq.util.postgres.PostgresDatabase</name>
+                            <includes>
+                                kpfu_dcu_data.data_set
+                            </includes>
+                            <excludes>pg_catalog.*|information_schema.*|pg_toast.*</excludes>
+                        </database>
+                        <generate>
+                            <records>true</records>
+                        </generate>
+                        <target>
+                            <packageName>org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.jooq</packageName>
+                            <directory>target/generated-sources/jooq</directory>
+                        </target>
+                    </generator>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <id>jooq-gen-rep-db</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.9.1</version>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/target/generated-sources</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
