@@ -1,5 +1,7 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.time.LocalDateTime;
 
 /**
@@ -7,15 +9,30 @@ import java.time.LocalDateTime;
  * Created on 02.11.17.
  */
 public class MetaInfoDto implements Dto {
+  @ApiModelProperty(
+          notes = "created timestamp"
+          , name = "createdTs")
   private LocalDateTime createdTs;
+
+  @ApiModelProperty(
+          notes = "updated timestamp"
+          , name = "updatedTs")
   private LocalDateTime updatedTs;
 
   public LocalDateTime getCreatedTs() {
     return createdTs;
   }
 
+  public void setCreatedTs(LocalDateTime createdTs) {
+    this.createdTs = createdTs;
+  }
+
   public LocalDateTime getUpdatedTs() {
     return updatedTs;
+  }
+
+  public void setUpdatedTs(LocalDateTime updatedTs) {
+    this.updatedTs = updatedTs;
   }
 
   public static final class Builder {

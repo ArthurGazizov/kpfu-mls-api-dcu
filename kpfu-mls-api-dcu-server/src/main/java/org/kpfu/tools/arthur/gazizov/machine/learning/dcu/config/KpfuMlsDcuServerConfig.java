@@ -4,6 +4,7 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.config.Conve
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.config.DaoConfig;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.util.ValidationReportChecker;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.util.ValidationReportCheckerImpl;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.config.ValidationConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.Import;
 @Import({
         DaoConfig.class
         , ConverterConfig.class
+        , ValidationConfig.class
 })
 @ComponentScan(
         basePackages = {
