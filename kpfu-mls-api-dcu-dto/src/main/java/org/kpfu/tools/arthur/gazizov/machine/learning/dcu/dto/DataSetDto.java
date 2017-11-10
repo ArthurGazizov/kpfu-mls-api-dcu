@@ -1,5 +1,6 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -12,12 +13,15 @@ public class DataSetDto extends BaseDto {
           , name = "id"
           , example = "123456"
           , readOnly = true)
+
+  @JsonProperty("id")
   private Long id;
 
   @ApiModelProperty(
           notes = "Data set name"
           , name = "name"
           , example = "example name")
+  @JsonProperty("name")
   private String name;
 
   public Long getId() {

@@ -3,11 +3,10 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.service;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.DataSetDao;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.exception.KpfuMlsDcuError;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.DataSetModel;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.MetaInfoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
@@ -38,21 +37,22 @@ public class DataSetServiceImpl implements DataSetService {
 
   @Override
   public DataSetModel patch(DataSetModel model) {
-    return dataSetDao.update(model);
+    final DataSetModel dataSetModel = Optional.ofNullable(dataSetDao.get(model.getId()))
+            .orElseThrow(KpfuMlsDcuError.DATA_SET_NOT_FOUND::exception);
+    if (StringUtils.hasText(model.getName())) {
+      dataSetModel.setName(model.getName());
+    }
+    return dataSetDao.update(dataSetModel);
   }
 
   @Override
   public void delete(Long id) {
-    final DataSetModel dataSetModel = Optional.ofNullable(dataSetDao.get(id))
-            .orElseThrow(KpfuMlsDcuError.DATA_SET_NOT_FOUND::exception);
-
-    dataSetModel.setDeleted(true);
-    final MetaInfoModel metaInfoEntity = dataSetModel.getMetaInfoModel();
-    metaInfoEntity.setDeletedTs(LocalDateTime.now());
+    dataSetDao.delete(id);
   }
 
   @Override
   public DataSetModel restore(Long id) {
-    return null;
+    dataSetDao.restore(id);
+    return get(id);
   }
 }
