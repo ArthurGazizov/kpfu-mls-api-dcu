@@ -15,7 +15,7 @@ import java.util.UUID;
  * Created on 10.11.17.
  */
 @ControllerAdvice
-public class DcuControllerAdvice {
+public class DcuControllerAdviceImpl implements DcuControllerAdvice {
   private ResponseEntity<ErrorDto> generateResponse(Throwable throwable) {
     if (throwable instanceof KpfuMlsDcuException) {
       final KpfuMlsDcuException kpfuMlsDcuException = (KpfuMlsDcuException) throwable;
@@ -35,13 +35,15 @@ public class DcuControllerAdvice {
     }
   }
 
-  @ExceptionHandler({RuntimeException.class})
+  @Override
+  @ExceptionHandler({Exception.class})
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   public ResponseEntity<ErrorDto> handleUnknownException(Exception exception) {
     return this.generateResponse(exception);
   }
 
-  @ExceptionHandler({RuntimeException.class})
+  @Override
+  @ExceptionHandler({KpfuMlsDcuException.class})
   public ResponseEntity<ErrorDto> handleKpfuMlsDcuException(KpfuMlsDcuException kpfuMlsDcuException) {
     return this.generateResponse(kpfuMlsDcuException);
   }
