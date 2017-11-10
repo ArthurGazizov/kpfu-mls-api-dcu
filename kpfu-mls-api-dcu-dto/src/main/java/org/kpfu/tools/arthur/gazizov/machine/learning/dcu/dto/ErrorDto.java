@@ -1,12 +1,29 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * @author Arthur Gazizov (Cinarra Systems)
  * Created on 10.11.17.
  */
 public class ErrorDto implements Dto {
+  @ApiModelProperty(
+          notes = "error id"
+          , name = "errorId")
+  @JsonProperty("errorId")
   private String errorId;
+
+  @ApiModelProperty(
+          notes = "error code"
+          , name = "code")
+  @JsonProperty("code")
   private Integer code;
+
+  @ApiModelProperty(
+          notes = "error message"
+          , name = "message")
+  @JsonProperty("message")
   private String message;
 
   public String getErrorId() {

@@ -36,7 +36,7 @@ public class DataSetProcessorProxyImpl implements DataSetProcessor {
 
   @Override
   public ResponseEntity<DataSetDto> save(DataSetDto dataSetDto) {
-    final ValidationReport validationReport = dataSetDtoValidator.validateToPatch(dataSetDto);
+    final ValidationReport validationReport = dataSetDtoValidator.validateToSave(dataSetDto);
     validationReportChecker.check(validationReport);
     return dataSetProcessor.save(dataSetDto);
   }
@@ -59,5 +59,11 @@ public class DataSetProcessorProxyImpl implements DataSetProcessor {
   public ResponseEntity<Void> delete(Long id) {
     Objects.requireNonNull(id);
     return dataSetProcessor.delete(id);
+  }
+
+  @Override
+  public ResponseEntity<DataSetDto> restore(Long id) {
+    Objects.requireNonNull(id);
+    return dataSetProcessor.restore(id);
   }
 }

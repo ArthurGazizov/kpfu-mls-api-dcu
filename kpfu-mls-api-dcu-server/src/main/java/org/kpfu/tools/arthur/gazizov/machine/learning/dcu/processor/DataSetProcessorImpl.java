@@ -31,7 +31,7 @@ public class DataSetProcessorImpl implements DataSetProcessor {
 
   @Override
   public ResponseEntity<DataSetDto> update(DataSetDto dataSetDto) {
-    return dataSetProcessor.save(dataSetDto);
+    return dataSetProcessor.update(dataSetDto);
   }
 
   @Override
@@ -42,5 +42,10 @@ public class DataSetProcessorImpl implements DataSetProcessor {
   @Override
   public ResponseEntity<Void> delete(Long id) {
     return dataSetProcessor.delete(id);
+  }
+
+  @Override
+  public ResponseEntity<DataSetDto> restore(Long id) {
+    return dataSetProcessor.restore(id);
   }
 }

@@ -16,4 +16,6 @@ public interface BaseDao<T extends EntityModel> {
   void restore(Long id);
 
   T get(Long id);
+
+  void delete(Long id);
 }

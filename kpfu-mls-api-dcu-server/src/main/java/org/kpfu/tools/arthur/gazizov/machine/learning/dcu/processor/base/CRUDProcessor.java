@@ -17,4 +17,6 @@ public interface CRUDProcessor<T extends Dto> {
   ResponseEntity<T> patch(T t);
 
   ResponseEntity<Void> delete(Long id);
+
+  ResponseEntity<T> restore(Long id);
 }
