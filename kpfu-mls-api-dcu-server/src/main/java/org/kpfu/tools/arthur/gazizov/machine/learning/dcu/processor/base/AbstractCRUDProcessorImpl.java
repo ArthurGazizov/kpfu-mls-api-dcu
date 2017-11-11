@@ -7,6 +7,9 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.service.CRUDService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @author Arthur Gazizov (Cinarra Systems)
  * Created on 10.11.17.
@@ -53,6 +56,15 @@ public abstract class AbstractCRUDProcessorImpl<T extends Dto, M extends Model> 
   public ResponseEntity<T> restore(Long id) {
     final M restored = crudService().restore(id);
     final T dto = converter().convert(restored);
+    return ResponseEntity.ok(dto);
+  }
+
+  @Override
+  public ResponseEntity<List<T>> findAll() {
+    final List<M> all = crudService().findAll();
+    final List<T> dto = all.stream()
+            .map(m -> converter().convert(m))
+            .collect(Collectors.toList());
     return ResponseEntity.ok(dto);
   }
 

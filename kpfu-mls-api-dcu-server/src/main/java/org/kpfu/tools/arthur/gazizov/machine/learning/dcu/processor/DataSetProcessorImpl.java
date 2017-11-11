@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Arthur Gazizov (Cinarra Systems)
  * Created on 10.11.17.
@@ -47,5 +49,10 @@ public class DataSetProcessorImpl implements DataSetProcessor {
   @Override
   public ResponseEntity<DataSetDto> restore(Long id) {
     return dataSetProcessor.restore(id);
+  }
+
+  @Override
+  public ResponseEntity<List<DataSetDto>> findAll() {
+    return dataSetProcessor.findAll();
   }
 }

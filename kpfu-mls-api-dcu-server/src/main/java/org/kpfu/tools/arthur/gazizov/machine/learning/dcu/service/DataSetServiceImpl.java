@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
@@ -21,7 +24,7 @@ public class DataSetServiceImpl implements DataSetService {
   @Override
   public DataSetModel get(Long id) {
     return Optional.of(id)
-            .map(dataSetDao::get)
+            .map(dataSetDao::find)
             .orElseThrow(KpfuMlsDcuError.DATA_SET_NOT_FOUND::exception);
   }
 
@@ -37,7 +40,7 @@ public class DataSetServiceImpl implements DataSetService {
 
   @Override
   public DataSetModel patch(DataSetModel model) {
-    final DataSetModel dataSetModel = Optional.ofNullable(dataSetDao.get(model.getId()))
+    final DataSetModel dataSetModel = Optional.ofNullable(dataSetDao.find(model.getId()))
             .orElseThrow(KpfuMlsDcuError.DATA_SET_NOT_FOUND::exception);
     if (StringUtils.hasText(model.getName())) {
       dataSetModel.setName(model.getName());
@@ -54,5 +57,11 @@ public class DataSetServiceImpl implements DataSetService {
   public DataSetModel restore(Long id) {
     dataSetDao.restore(id);
     return get(id);
+  }
+
+  @Override
+  public List<DataSetModel> findAll() {
+    return StreamSupport.stream(dataSetDao.findAll().spliterator(), false)
+            .collect(Collectors.toList());
   }
 }

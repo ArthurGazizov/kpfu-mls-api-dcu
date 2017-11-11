@@ -7,9 +7,13 @@ import org.springframework.http.HttpStatus;
  * Created on 09.11.17.
  */
 public enum KpfuMlsDcuError {
-  UNSPECIFIED(1_00_01, HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error"),
+  UNSPECIFIED(1_000_001, HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error"),
 
-  DATA_SET_NOT_FOUND(1_01_01, HttpStatus.NOT_FOUND, "Data set not found");
+  DATA_SET_NOT_FOUND(1_001_001, HttpStatus.NOT_FOUND, "Data set not found"),
+
+  VALIDATION_ERROR(1_002_001, HttpStatus.BAD_REQUEST, "Validation Error"),
+
+  UNSUPPORTED_OPERATION(1_900_001, HttpStatus.BAD_REQUEST, "Unsupported operation");
 
   private int code;
   private HttpStatus httpStatus;

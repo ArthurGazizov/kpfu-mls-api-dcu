@@ -2,12 +2,15 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.test;
 
 import org.junit.runner.RunWith;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.test.config.BaseDalTestConfig;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.DataSetModel;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+
+import java.util.UUID;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
@@ -21,4 +24,9 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
         TransactionalTestExecutionListener.class
 })
 public abstract class AbstractDaoTest {
+  protected DataSetModel generateDataSet() {
+    return DataSetModel.Builder.aDataSetModel()
+            .name(UUID.randomUUID().toString())
+            .build();
+  }
 }
