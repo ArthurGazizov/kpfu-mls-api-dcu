@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -65,5 +66,10 @@ public class DataSetProcessorProxyImpl implements DataSetProcessor {
   public ResponseEntity<DataSetDto> restore(Long id) {
     Objects.requireNonNull(id);
     return dataSetProcessor.restore(id);
+  }
+
+  @Override
+  public ResponseEntity<List<DataSetDto>> findAll() {
+    return dataSetProcessor.findAll();
   }
 }

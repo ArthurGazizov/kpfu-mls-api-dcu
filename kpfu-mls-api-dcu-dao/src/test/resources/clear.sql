@@ -1,0 +1,1 @@
+DELETE FROM kpfu_dcu_data.data_set;

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
@@ -25,7 +27,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * Created on 10.11.17.
  */
 @Controller
-@RequestMapping(value = "/v1", produces = {APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/v1/dcu", produces = {APPLICATION_JSON_VALUE})
 @Api(value = "DataSetController", description = "The DataSetController API")
 public class DataSetControllerImpl implements DataSetController {
   @Autowired
@@ -119,6 +121,23 @@ public class DataSetControllerImpl implements DataSetController {
   public ResponseEntity<Void> delete(@ApiParam(value = "id", required = true)
                                      @PathVariable("id") Long id) {
     return DataSetController.super.delete(id);
+  }
+
+  @ApiOperation(value = "Get all Datasets", notes = "", response = DataSetDto.class)
+  @ApiResponses(value = {
+          @ApiResponse(code = 201, message = "", response = List.class),
+          @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
+          @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
+          @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
+          @ApiResponse(code = 500, message = "Something exceptional happened", response = ErrorDto.class)
+  })
+  @RequestMapping(
+          value = "/dataset/all",
+          produces = {"application/json"},
+          method = RequestMethod.GET)
+  @Override
+  public ResponseEntity<List<DataSetDto>> findAll() {
+    return DataSetController.super.findAll();
   }
 
   @Override

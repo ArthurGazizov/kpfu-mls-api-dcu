@@ -4,6 +4,8 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.Dto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.base.CRUDProcessor;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 /**
  * @author Arthur Gazizov (Cinarra Systems)
  * Created on 10.11.17.
@@ -27,6 +29,10 @@ public interface CRUDController<T extends Dto> {
 
   default ResponseEntity<Void> delete(Long id) {
     return processor().delete(id);
+  }
+
+  default ResponseEntity<List<T>> findAll() {
+    return processor().findAll();
   }
 
   CRUDProcessor<T> processor();

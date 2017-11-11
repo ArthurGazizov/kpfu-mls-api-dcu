@@ -2,7 +2,6 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.report.buil
 
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.report.ValidationReport;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.report.base.SuccessValidationReportImpl;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.report.builder.ValidationReportBuilder;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
@@ -11,6 +10,7 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.report.build
 public class SuccessValidationReportBuilderImpl implements ValidationReportBuilder {
   @Override
   public ValidationReport build() {
-    return new SuccessValidationReportImpl();
+    return SuccessValidationReportImpl.Builder.aSuccessValidationReportImpl()
+            .build();
   }
 }

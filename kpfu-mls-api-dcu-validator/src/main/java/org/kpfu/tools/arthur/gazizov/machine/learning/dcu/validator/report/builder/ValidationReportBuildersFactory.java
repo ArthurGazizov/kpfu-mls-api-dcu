@@ -11,7 +11,7 @@ public class ValidationReportBuildersFactory {
 
   }
 
-  public static ValidationReportBuildersFactory intsance() {
+  public static ValidationReportBuildersFactory instance() {
     return instance;
   }
 

@@ -1,67 +1,37 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal;
 
+import org.jooq.Field;
+import org.jooq.Table;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.base.AbstractCRUDDao;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.jooq.kpfu_dcu_data.tables.DataSet;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.jooq.kpfu_dcu_data.tables.records.DataSetRecord;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.base.Mapper;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.interfaces.DataSetMapper;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.DataSetModel;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.MetaInfoModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
  * Created on 09.11.17.
  */
-// TODO: 09.11.17 implement
 @Repository
-public class DataSetDaoImpl implements DataSetDao {
-  private final Map<Long, DataSetModel> storage = new HashMap<>();
+public class DataSetDaoImpl extends AbstractCRUDDao<DataSetModel, DataSetRecord> implements DataSetDao {
+  @Autowired
+  private DataSetMapper dataSetMapper;
 
   @Override
-  public DataSetModel save(DataSetModel model) {
-    Long id = null;
-    while (id == null || storage.containsKey(id)) {
-      id = 1L * Math.abs(ThreadLocalRandom.current().nextInt());
-    }
-    model.setId(id);
-    final MetaInfoModel metaInfoModel = MetaInfoModel.Builder.aMetaInfoEntity()
-            .createdTs(LocalDateTime.now().minusDays(1L))
-            .updatedTs(LocalDateTime.now())
-            .build();
-    model.setMetaInfoModel(metaInfoModel);
-    storage.put(id, model);
-    return storage.get(id);
+  protected Table<DataSetRecord> table() {
+    return DataSet.DATA_SET;
   }
 
   @Override
-  public DataSetModel update(DataSetModel model) {
-    final DataSetModel dataSetModel = storage.get(model.getId());
-    if (dataSetModel == null) {
-      return dataSetModel;
-    }
-    dataSetModel.setName(model.getName());
-    dataSetModel.getMetaInfoModel().setUpdatedTs(LocalDateTime.now());
-    return dataSetModel;
+  protected Mapper<DataSetModel, DataSetRecord> mapper() {
+    return dataSetMapper;
   }
 
   @Override
-  public void delete(DataSetModel model) {
-    delete(model.getId());
-  }
-
-  @Override
-  public void restore(Long id) {
-
-  }
-
-  @Override
-  public DataSetModel get(Long id) {
-    return storage.get(id);
-  }
-
-  @Override
-  public void delete(Long id) {
-    storage.remove(id);
+  protected Field<Long> idField() {
+    return DataSet.DATA_SET.DATA_SET_ID;
   }
 }
