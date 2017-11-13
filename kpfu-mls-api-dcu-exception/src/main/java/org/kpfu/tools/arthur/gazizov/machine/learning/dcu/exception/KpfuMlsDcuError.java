@@ -11,6 +11,8 @@ public enum KpfuMlsDcuError {
 
   DATA_SET_NOT_FOUND(1_001_001, HttpStatus.NOT_FOUND, "Data set not found"),
 
+  DATA_SET_ELEMENT_NOT_FOUND(1_001_002, HttpStatus.NOT_FOUND, "Data set element not found"),
+
   VALIDATION_ERROR(1_002_001, HttpStatus.BAD_REQUEST, "Validation Error"),
 
   UNSUPPORTED_OPERATION(1_900_001, HttpStatus.BAD_REQUEST, "Unsupported operation");

@@ -105,9 +105,9 @@ public class DataSetControllerImpl implements DataSetController {
     return DataSetController.super.patch(dataSetDto);
   }
 
-  @ApiOperation(value = "Delete Dataset", notes = "", response = DataSetDto.class)
+  @ApiOperation(value = "Delete Dataset", notes = "")
   @ApiResponses(value = {
-          @ApiResponse(code = 201, message = "", response = DataSetDto.class),
+          @ApiResponse(code = 201, message = ""),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
           @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
           @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
@@ -123,7 +123,7 @@ public class DataSetControllerImpl implements DataSetController {
     return DataSetController.super.delete(id);
   }
 
-  @ApiOperation(value = "Get all Datasets", notes = "", response = DataSetDto.class)
+  @ApiOperation(value = "Get all Datasets", notes = "", response = List.class)
   @ApiResponses(value = {
           @ApiResponse(code = 201, message = "", response = List.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
