@@ -21,7 +21,6 @@ import java.util.stream.StreamSupport;
         scripts = "classpath:clear.sql",
         executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
 )
-
 public class DataSetDaoTest extends AbstractDaoTest {
   @Autowired
   private DataSetDao dataSetDao;

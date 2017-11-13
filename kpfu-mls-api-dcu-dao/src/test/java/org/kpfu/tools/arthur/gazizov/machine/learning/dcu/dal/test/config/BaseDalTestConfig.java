@@ -2,7 +2,11 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.test.config;
 
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.DataSetDao;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.DataSetDaoImpl;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.DataSetElementDao;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.DataSetElementDaoImpl;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.impl.DataSetElementMapperImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.impl.DataSetMapperImpl;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.interfaces.DataSetElementMapper;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.interfaces.DataSetMapper;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
@@ -31,6 +35,16 @@ public class BaseDalTestConfig {
   @Bean
   public DataSetDao dataSetDao() {
     return new DataSetDaoImpl();
+  }
+
+  @Bean
+  public DataSetElementMapper dataSetElementMapper() {
+    return new DataSetElementMapperImpl();
+  }
+
+  @Bean
+  public DataSetElementDao dataSetElementDao() {
+    return new DataSetElementDaoImpl();
   }
 
   @Bean

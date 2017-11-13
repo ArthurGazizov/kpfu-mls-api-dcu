@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Optional;
 
 import static org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.jooq.kpfu_dcu_data.tables.DataSet.DATA_SET;
@@ -53,11 +54,11 @@ public class DataSetMapperImpl implements DataSetMapper {
     record.setDataSetName(model.getName());
     record.setDataSetIsDeleted(Optional.ofNullable(model.getDeleted()).orElse(false));
     final MetaInfoModel metaInfoModel = model.getMetaInfoModel();
-    if (metaInfoModel != null) {
-      if (metaInfoModel.getCreatedTs() != null) {
+    if (Objects.nonNull(metaInfoModel)) {
+      if (Objects.nonNull(metaInfoModel.getCreatedTs())) {
         record.setDataSetCreatedTs(Timestamp.valueOf(metaInfoModel.getCreatedTs()));
       }
-      if (metaInfoModel.getDeletedTs() != null) {
+      if (Objects.nonNull(metaInfoModel.getDeletedTs())) {
         record.setDataSetDeletedTs(Timestamp.valueOf(metaInfoModel.getDeletedTs()));
       }
     }
