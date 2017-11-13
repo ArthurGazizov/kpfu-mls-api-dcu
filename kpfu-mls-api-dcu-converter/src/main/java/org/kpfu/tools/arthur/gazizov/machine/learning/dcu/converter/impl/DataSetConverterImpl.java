@@ -32,6 +32,7 @@ public class DataSetConverterImpl implements DataSetConverter {
     return DataSetModel.Builder.aDataSetModel()
             .id(dto.getId())
             .name(dto.getName())
+            .metaInfoModel(metaInfoConverter.convert(dto.getMetaInfoDto()))
             .build();
   }
 }

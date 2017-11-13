@@ -5,11 +5,11 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.DataSetDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.DataSetElementDto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.ErrorDto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.base.CRUDProcessor;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.interfaces.DataSetProcessor;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.rest.api.interfaces.DataSetController;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.interfaces.DataSetElementProcessor;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.rest.api.interfaces.DataSetElementController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,106 +24,106 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
- * Created on 10.11.17.
+ * Created on 12.11.17.
  */
 @Controller
-@RequestMapping(value = "/v1/dcu", produces = {APPLICATION_JSON_VALUE})
-@Api(value = "DataSetController", description = "The DataSetController API")
-public class DataSetControllerImpl implements DataSetController {
+@RequestMapping(value = "/v1/dcu/dataset/", produces = {APPLICATION_JSON_VALUE})
+@Api(value = "DataSetElementController", description = "The DataSetElementController API")
+public class DataSetElementControllerImpl implements DataSetElementController {
   @Autowired
-  private DataSetProcessor dataSetProcessor;
+  private DataSetElementProcessor dataSetElementProcessor;
 
-  @ApiOperation(value = "Get Dataset", notes = "", response = DataSetDto.class)
+  @ApiOperation(value = "Get Dataset element", notes = "", response = DataSetElementDto.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 200, message = "", response = DataSetDto.class),
+          @ApiResponse(code = 200, message = "", response = DataSetElementDto.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
           @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
           @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
           @ApiResponse(code = 500, message = "Something exceptional happened", response = ErrorDto.class)
   })
   @RequestMapping(
-          value = "/dataset/{id}",
+          value = "/element/{id}",
           produces = {"application/json"},
           method = RequestMethod.GET)
   @Override
-  public ResponseEntity<DataSetDto> get(@ApiParam(value = "id", required = true)
-                                        @PathVariable("id") Long id) {
-    return DataSetController.super.get(id);
+  public ResponseEntity<DataSetElementDto> get(@ApiParam(value = "id", required = true)
+                                               @PathVariable("id") Long id) {
+    return DataSetElementController.super.get(id);
   }
 
-  @ApiOperation(value = "Save Dataset", notes = "", response = DataSetDto.class)
+  @ApiOperation(value = "Save Dataset element", notes = "", response = DataSetElementDto.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 201, message = "", response = DataSetDto.class),
+          @ApiResponse(code = 201, message = "", response = DataSetElementDto.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
           @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
           @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
           @ApiResponse(code = 500, message = "Something exceptional happened", response = ErrorDto.class)
   })
   @RequestMapping(
-          value = "/dataset",
+          value = "/element",
           produces = {"application/json"},
           method = RequestMethod.POST)
   @Override
-  public ResponseEntity<DataSetDto> save(@ApiParam(value = "dataSetDto", required = true)
-                                         @RequestBody DataSetDto dataSetDto) {
-    return DataSetController.super.save(dataSetDto);
+  public ResponseEntity<DataSetElementDto> save(@ApiParam(value = "dataSetElementDto", required = true)
+                                                @RequestBody DataSetElementDto dataSetElementDto) {
+    return DataSetElementController.super.save(dataSetElementDto);
   }
 
-  @ApiOperation(value = "Update Dataset", notes = "", response = DataSetDto.class)
+  @ApiOperation(value = "Update Dataset element", notes = "", response = DataSetElementDto.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 200, message = "", response = DataSetDto.class),
+          @ApiResponse(code = 200, message = "", response = DataSetElementDto.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
           @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
           @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
           @ApiResponse(code = 500, message = "Something exceptional happened", response = ErrorDto.class)
   })
   @RequestMapping(
-          value = "/dataset",
+          value = "/element",
           produces = {"application/json"},
           method = RequestMethod.PUT)
   @Override
-  public ResponseEntity<DataSetDto> update(@ApiParam(value = "dataSetDto", required = true)
-                                           @RequestBody DataSetDto dataSetDto) {
-    return DataSetController.super.update(dataSetDto);
+  public ResponseEntity<DataSetElementDto> update(@ApiParam(value = "dataSetElementDto", required = true)
+                                                  @RequestBody DataSetElementDto dataSetElementDto) {
+    return DataSetElementController.super.update(dataSetElementDto);
   }
 
-  @ApiOperation(value = "Patch Dataset", notes = "", response = DataSetDto.class)
+  @ApiOperation(value = "Patch Dataset element", notes = "", response = DataSetElementDto.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 200, message = "", response = DataSetDto.class),
+          @ApiResponse(code = 200, message = "", response = DataSetElementDto.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
           @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
           @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
           @ApiResponse(code = 500, message = "Something exceptional happened", response = ErrorDto.class)
   })
   @RequestMapping(
-          value = "/dataset",
+          value = "/element",
           produces = {"application/json"},
           method = RequestMethod.PATCH)
   @Override
-  public ResponseEntity<DataSetDto> patch(@ApiParam(value = "dataSetDto", required = true)
-                                          @RequestBody DataSetDto dataSetDto) {
-    return DataSetController.super.patch(dataSetDto);
+  public ResponseEntity<DataSetElementDto> patch(@ApiParam(value = "dataSetElementDto", required = true)
+                                                 @RequestBody DataSetElementDto dataSetElementDto) {
+    return DataSetElementController.super.patch(dataSetElementDto);
   }
 
-  @ApiOperation(value = "Delete Dataset", notes = "")
+  @ApiOperation(value = "Delete Dataset element", notes = "")
   @ApiResponses(value = {
-          @ApiResponse(code = 201, message = ""),
+          @ApiResponse(code = 200, message = ""),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
           @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
           @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
           @ApiResponse(code = 500, message = "Something exceptional happened", response = ErrorDto.class)
   })
   @RequestMapping(
-          value = "/dataset/{id}",
+          value = "/element/{id}",
           produces = {"application/json"},
           method = RequestMethod.DELETE)
   @Override
   public ResponseEntity<Void> delete(@ApiParam(value = "id", required = true)
                                      @PathVariable("id") Long id) {
-    return DataSetController.super.delete(id);
+    return DataSetElementController.super.delete(id);
   }
 
-  @ApiOperation(value = "Get all Datasets", notes = "", response = List.class)
+  @ApiOperation(value = "Get all Datasets elements", notes = "", response = List.class)
   @ApiResponses(value = {
           @ApiResponse(code = 201, message = "", response = List.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
@@ -132,16 +132,16 @@ public class DataSetControllerImpl implements DataSetController {
           @ApiResponse(code = 500, message = "Something exceptional happened", response = ErrorDto.class)
   })
   @RequestMapping(
-          value = "/dataset/all",
+          value = "/element/all",
           produces = {"application/json"},
           method = RequestMethod.GET)
   @Override
-  public ResponseEntity<List<DataSetDto>> findAll() {
-    return DataSetController.super.findAll();
+  public ResponseEntity<List<DataSetElementDto>> findAll() {
+    return DataSetElementController.super.findAll();
   }
 
   @Override
-  public CRUDProcessor<DataSetDto> processor() {
-    return dataSetProcessor;
+  public CRUDProcessor<DataSetElementDto> processor() {
+    return dataSetElementProcessor;
   }
 }

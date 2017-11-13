@@ -68,6 +68,7 @@
                             <name>org.jooq.util.postgres.PostgresDatabase</name>
                             <includes>
                                 kpfu_dcu_data.data_set
+                                | kpfu_dcu_data.data_set_element
                             </includes>
                             <excludes>pg_catalog.*|information_schema.*|pg_toast.*</excludes>
                         </database>

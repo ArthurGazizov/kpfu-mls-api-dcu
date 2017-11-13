@@ -12,6 +12,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.Util.buildReport;
+
 /**
  * @author Arthur Gazizov (Cinarra Systems)
  * Created on 10.11.17.
@@ -35,7 +37,7 @@ public class DataSetDtoValidatorImpl implements DataSetDtoValidator {
 
   @Override
   public ValidationReport validateToPatch(DataSetDto dto) {
-    final List<Valid> errors = Stream.of(idIsNull(dto), nameIsEmpty(dto))
+    final List<Valid> errors = Stream.of(idIsNull(dto), incorrectName(dto))
             .filter(Valid::isFail)
             .collect(Collectors.toList());
     return buildReport(errors);
@@ -53,16 +55,8 @@ public class DataSetDtoValidatorImpl implements DataSetDtoValidator {
     return new Valid(StringUtils.isEmpty(dataSetDto.getName()), "Name is empty");
   }
 
-  private ValidationReport buildReport(List<Valid> errors) {
-    return errors.isEmpty()
-            ?
-            ValidationReportBuildersFactory.instance()
-                    .successValidationReportBuilder()
-                    .build()
-            :
-            ValidationReportBuildersFactory.instance()
-                    .failValidationReportBuilder()
-                    .valids(errors)
-                    .build();
+  private Valid incorrectName(DataSetDto dataSetDto){
+    final String name = dataSetDto.getName();
+    return new Valid(Objects.nonNull(name) && !StringUtils.hasText(name), "Incorrect name");
   }
 }
