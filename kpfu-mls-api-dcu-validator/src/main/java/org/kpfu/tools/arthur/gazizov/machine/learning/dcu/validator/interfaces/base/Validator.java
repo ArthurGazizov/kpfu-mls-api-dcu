@@ -1,6 +1,6 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.interfaces.base;
 
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.Dto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.common.Dto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.report.ValidationReport;
 
 /**

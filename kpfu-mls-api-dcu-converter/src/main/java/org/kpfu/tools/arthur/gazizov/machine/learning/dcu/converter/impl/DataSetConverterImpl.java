@@ -12,8 +12,7 @@ import org.springframework.stereotype.Component;
  * @author Arthur Gazizov (Cinarra Systems)
  * Created on 10.11.17.
  */
-@Component
-@Conversion(model = DataSetModel.class, dto = DataSetDto.class)
+@Conversion(dto = DataSetDto.class, model = DataSetModel.class)
 public class DataSetConverterImpl implements DataSetConverter {
   @Autowired
   private MetaInfoConverter metaInfoConverter;

@@ -1,4 +1,4 @@
-package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor;
+package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.real;
 
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.DataSetConverter;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.base.Converter;

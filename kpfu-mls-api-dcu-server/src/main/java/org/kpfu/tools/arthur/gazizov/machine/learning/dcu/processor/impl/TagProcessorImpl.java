@@ -1,6 +1,7 @@
-package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor;
+package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.impl;
 
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.TagDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.support.PageResponse;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.interfaces.TagProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -54,5 +55,10 @@ public class TagProcessorImpl implements TagProcessor {
   @Override
   public ResponseEntity<List<TagDto>> findAll() {
     return tagProcessor.findAll();
+  }
+
+  @Override
+  public ResponseEntity<PageResponse<TagDto>> findAll(Integer limit, Integer offset) {
+    return tagProcessor.findAll(limit, offset);
   }
 }

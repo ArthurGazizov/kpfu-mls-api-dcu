@@ -1,6 +1,7 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.service;
 
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.Model;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.support.PageModel;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface CRUDService<T extends Model> {
   T restore(Long id);
 
   List<T> findAll();
+
+  PageModel<T> findAll(Integer limit, Integer offset);
 }

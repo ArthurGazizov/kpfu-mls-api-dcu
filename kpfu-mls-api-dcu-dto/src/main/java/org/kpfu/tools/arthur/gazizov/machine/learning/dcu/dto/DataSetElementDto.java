@@ -2,6 +2,8 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.base.BaseDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.meta.MetaInfoDto;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)

@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.config.ConverterConfig;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.factory.ConverterFactory;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.base.Converter;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.Dto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.common.Dto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;

@@ -12,8 +12,7 @@ import org.springframework.stereotype.Component;
  * @author Arthur Gazizov (Cinarra Systems)
  * Created on 16.11.17.
  */
-@Component
-@Conversion(model = TagModel.class, dto = TagDto.class)
+@Conversion(dto = TagDto.class, model = TagModel.class)
 public class TagConverterImpl implements TagConverter {
   @Autowired
   private MetaInfoConverter metaInfoConverter;

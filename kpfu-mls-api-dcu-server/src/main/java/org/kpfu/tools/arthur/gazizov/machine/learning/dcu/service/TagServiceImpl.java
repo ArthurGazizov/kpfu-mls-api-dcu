@@ -3,6 +3,7 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.service;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.TagDao;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.exception.KpfuMlsDcuError;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.TagModel;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.support.PageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,5 +67,10 @@ public class TagServiceImpl implements TagService {
   public List<TagModel> findAll() {
     return StreamSupport.stream(tagDao.findAll().spliterator(), false)
             .collect(Collectors.toList());
+  }
+
+  @Override
+  public PageModel<TagModel> findAll(Integer limit, Integer offset) {
+    return tagDao.findAll(limit, offset);
   }
 }

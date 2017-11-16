@@ -34,7 +34,7 @@ public class KpfuMlsDcuException extends RuntimeException {
     return error.getHttpStatus();
   }
 
-  public int getCode() {
+  public Integer getCode() {
     return error.getCode();
   }
 }

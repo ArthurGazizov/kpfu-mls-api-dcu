@@ -2,6 +2,7 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.common.Dto;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
@@ -10,19 +11,22 @@ import io.swagger.annotations.ApiModelProperty;
 public class ErrorDto implements Dto {
   @ApiModelProperty(
           notes = "error id"
-          , name = "errorId")
+          , name = "errorId"
+          , readOnly = true)
   @JsonProperty("errorId")
   private String errorId;
 
   @ApiModelProperty(
           notes = "error code"
-          , name = "code")
+          , name = "code"
+          , readOnly = true)
   @JsonProperty("code")
   private Integer code;
 
   @ApiModelProperty(
           notes = "error message"
-          , name = "message")
+          , name = "message"
+          , readOnly = true)
   @JsonProperty("message")
   private String message;
 

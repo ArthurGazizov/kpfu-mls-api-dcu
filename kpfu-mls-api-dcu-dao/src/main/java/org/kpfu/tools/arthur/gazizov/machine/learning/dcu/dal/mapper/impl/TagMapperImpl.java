@@ -51,20 +51,20 @@ public class TagMapperImpl implements TagMapper {
 
   @Override
   public TagRecord mapToEntity(TagModel model) {
-    final TagRecord record = new TagRecord();
-    record.setTagName(model.getName());
-    record.setTagCode(model.getCode());
-    record.setTagIsDeleted(Optional.ofNullable(model.getDeleted()).orElse(false));
+    final TagRecord tagRecord = new TagRecord();
+    tagRecord.setTagName(model.getName());
+    tagRecord.setTagCode(model.getCode());
+    tagRecord.setTagIsDeleted(Optional.ofNullable(model.getDeleted()).orElse(false));
     final MetaInfoModel metaInfoModel = model.getMetaInfoModel();
     if (Objects.nonNull(metaInfoModel)) {
       if (Objects.nonNull(metaInfoModel.getCreatedTs())) {
-        record.setTagCreatedTs(Timestamp.valueOf(metaInfoModel.getCreatedTs()));
+        tagRecord.setTagCreatedTs(Timestamp.valueOf(metaInfoModel.getCreatedTs()));
       }
       if (Objects.nonNull(metaInfoModel.getDeletedTs())) {
-        record.setTagDeletedTs(Timestamp.valueOf(metaInfoModel.getDeletedTs()));
+        tagRecord.setTagDeletedTs(Timestamp.valueOf(metaInfoModel.getDeletedTs()));
       }
     }
-    record.setTagUpdatedTs(Timestamp.valueOf(LocalDateTime.now()));
-    return record;
+    tagRecord.setTagUpdatedTs(Timestamp.valueOf(LocalDateTime.now()));
+    return tagRecord;
   }
 }

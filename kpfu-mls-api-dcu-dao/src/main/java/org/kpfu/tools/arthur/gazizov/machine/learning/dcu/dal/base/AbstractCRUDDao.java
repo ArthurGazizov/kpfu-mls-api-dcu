@@ -1,13 +1,22 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.base;
 
+import org.jooq.Condition;
 import org.jooq.Field;
 import org.jooq.Record;
+import org.jooq.Record1;
+import org.jooq.Result;
+import org.jooq.SelectQuery;
+import org.jooq.SelectSelectStep;
 import org.jooq.Table;
 import org.jooq.UpdatableRecord;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.base.Mapper;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.exception.KpfuMlsDcuError;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.EntityModel;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.support.PageModel;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -101,6 +110,38 @@ public abstract class AbstractCRUDDao<E extends EntityModel, R extends Updatable
             .stream()
             .map(r -> mapper().mapToModel(r))
             .collect(Collectors.toList());
+  }
+
+  @Override
+  public PageModel<E> findAll(Integer limit, Integer offset) {
+    return search(Collections.emptyList(), limit, offset);
+  }
+
+  @Override
+  public PageModel<E> search(List<Condition> conditions, Integer limit, Integer offset) {
+    final SelectQuery<Record> selectQuery = getDslContext().selectQuery();
+    selectQuery.addConditions(conditions);
+    final SelectSelectStep<Record1<Integer>> selectOne = getDslContext().selectOne();
+    selectOne.where(conditions);
+    selectOne.from(table());
+    selectQuery.addFrom(table());
+    selectQuery.addSelect(selectFields());
+    if (Objects.nonNull(limit)) {
+      if (Objects.nonNull(offset)) {
+        selectQuery.addLimit(offset, limit);
+      } else {
+        selectQuery.addLimit(limit);
+      }
+    }
+    final Result<Record> fetch = selectQuery.fetch();
+    final List<E> data = fetch.stream()
+            .map(mapper()::mapToModel)
+            .collect(Collectors.toList());
+    return PageModel.Builder.<E>aPageModel()
+            .data(data)
+            .offset(offset)
+            .total(selectOne.execute())
+            .build();
   }
 
   @Override

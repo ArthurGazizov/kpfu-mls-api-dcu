@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.ErrorDto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.TagDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.support.PageResponse;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.base.CRUDProcessor;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.interfaces.TagProcessor;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.rest.api.interfaces.TagController;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -66,13 +68,13 @@ public class TagControllerImpl implements TagController {
           method = RequestMethod.POST)
   @Override
   public ResponseEntity<TagDto> save(@ApiParam(value = "tagDto", required = true)
-                                       @RequestBody TagDto tagDto) {
+                                     @RequestBody TagDto tagDto) {
     return TagController.super.save(tagDto);
   }
 
-  @ApiOperation(value = "Update tag", notes = "", response = TagDto.class)
+  @ApiOperation(value = "Update tag", notes = "", response = TagDto.class, code = 200)
   @ApiResponses(value = {
-          @ApiResponse(code = 201, message = "", response = TagDto.class),
+          @ApiResponse(code = 200, message = "", response = TagDto.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
           @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
           @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
@@ -84,7 +86,7 @@ public class TagControllerImpl implements TagController {
           method = RequestMethod.PUT)
   @Override
   public ResponseEntity<TagDto> update(@ApiParam(value = "tagDto", required = true)
-                                         @RequestBody TagDto tagDto) {
+                                       @RequestBody TagDto tagDto) {
     return TagController.super.update(tagDto);
   }
 
@@ -102,13 +104,13 @@ public class TagControllerImpl implements TagController {
           method = RequestMethod.PATCH)
   @Override
   public ResponseEntity<TagDto> patch(@ApiParam(value = "tagDto", required = true)
-                                        @RequestBody TagDto tagDto) {
+                                      @RequestBody TagDto tagDto) {
     return TagController.super.patch(tagDto);
   }
 
   @ApiOperation(value = "Delete tag", notes = "")
   @ApiResponses(value = {
-          @ApiResponse(code = 201, message = ""),
+          @ApiResponse(code = 200, message = ""),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
           @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
           @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
@@ -126,7 +128,7 @@ public class TagControllerImpl implements TagController {
 
   @ApiOperation(value = "Get all tags", notes = "", response = List.class)
   @ApiResponses(value = {
-          @ApiResponse(code = 201, message = "", response = List.class),
+          @ApiResponse(code = 200, message = "", response = List.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
           @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
           @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
@@ -139,6 +141,26 @@ public class TagControllerImpl implements TagController {
   @Override
   public ResponseEntity<List<TagDto>> findAll() {
     return TagController.super.findAll();
+  }
+
+  @ApiOperation(value = "Get page tags", notes = "", response = PageResponse.class)
+  @ApiResponses(value = {
+          @ApiResponse(code = 200, message = "", response = PageResponse.class),
+          @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
+          @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
+          @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
+          @ApiResponse(code = 500, message = "Something exceptional happened", response = ErrorDto.class)
+  })
+  @RequestMapping(
+          value = "/tag/page",
+          produces = {"application/json"},
+          method = RequestMethod.GET)
+  @Override
+  public ResponseEntity<PageResponse<TagDto>> findAll(@ApiParam(value = "limit", required = true)
+                                                      @RequestParam(value = "limit", required = true) Integer limit,
+                                                      @ApiParam(value = "offset", required = false)
+                                                      @RequestParam(value = "offset", required = false) Integer offset) {
+    return TagController.super.findAll(limit, offset);
   }
 
   @Override

@@ -1,8 +1,8 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.test;
 
 import org.junit.Assert;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.Dto;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.MetaInfoDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.common.Dto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.meta.MetaInfoDto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.MetaInfoModel;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.Model;
 

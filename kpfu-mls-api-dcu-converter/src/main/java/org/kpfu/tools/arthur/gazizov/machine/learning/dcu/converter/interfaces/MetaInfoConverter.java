@@ -1,7 +1,7 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces;
 
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.base.Converter;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.MetaInfoDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.meta.MetaInfoDto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.MetaInfoModel;
 
 /**

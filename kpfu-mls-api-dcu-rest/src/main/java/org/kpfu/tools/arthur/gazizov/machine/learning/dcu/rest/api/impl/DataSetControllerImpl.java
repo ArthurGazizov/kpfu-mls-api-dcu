@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.DataSetDto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.ErrorDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.support.PageResponse;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.base.CRUDProcessor;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.interfaces.DataSetProcessor;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.rest.api.interfaces.DataSetController;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -138,6 +140,26 @@ public class DataSetControllerImpl implements DataSetController {
   @Override
   public ResponseEntity<List<DataSetDto>> findAll() {
     return DataSetController.super.findAll();
+  }
+
+  @ApiOperation(value = "Get page Datasets", notes = "", response = PageResponse.class)
+  @ApiResponses(value = {
+          @ApiResponse(code = 201, message = "", response = PageResponse.class),
+          @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
+          @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
+          @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
+          @ApiResponse(code = 500, message = "Something exceptional happened", response = ErrorDto.class)
+  })
+  @RequestMapping(
+          value = "/dataset/page",
+          produces = {"application/json"},
+          method = RequestMethod.GET)
+  @Override
+  public ResponseEntity<PageResponse<DataSetDto>> findAll(@ApiParam(value = "limit", required = true)
+                                                          @RequestParam(value = "limit", required = true) Integer limit,
+                                                          @ApiParam(value = "offset", required = false)
+                                                          @RequestParam(value = "offset", required = false) Integer offset) {
+    return DataSetController.super.findAll(limit, offset);
   }
 
   @Override

@@ -2,9 +2,8 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.factory;
 
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.annotation.Conversion;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.base.Converter;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.Dto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.common.Dto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.Model;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;

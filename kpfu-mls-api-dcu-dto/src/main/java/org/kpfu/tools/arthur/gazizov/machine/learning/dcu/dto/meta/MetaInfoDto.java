@@ -1,7 +1,8 @@
-package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto;
+package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.meta;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.common.Dto;
 
 import java.time.LocalDateTime;
 
@@ -13,14 +14,16 @@ public class MetaInfoDto implements Dto {
   @ApiModelProperty(
           notes = "created timestamp"
           , name = "createdTs"
-          , example = "2017-11-08T06:41:51.853")
+          , example = "2017-11-08T06:41:51.853"
+          , readOnly = true)
   @JsonProperty("createdTs")
   private LocalDateTime createdTs;
 
   @ApiModelProperty(
           notes = "updated timestamp"
           , name = "updatedTs"
-          , example = "2017-11-08T06:41:51.853")
+          , example = "2017-11-08T06:41:51.853"
+          , readOnly = true)
   @JsonProperty("updatedTs")
   private LocalDateTime updatedTs;
 
