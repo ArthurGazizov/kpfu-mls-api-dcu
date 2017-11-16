@@ -1,4 +1,4 @@
-package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto;
+package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.common;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)

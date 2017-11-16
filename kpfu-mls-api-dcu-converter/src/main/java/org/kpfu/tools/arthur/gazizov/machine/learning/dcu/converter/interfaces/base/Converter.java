@@ -1,7 +1,7 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.base;
 
 import jdk.nashorn.internal.objects.annotations.Function;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.Dto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.common.Dto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.Model;
 
 /**

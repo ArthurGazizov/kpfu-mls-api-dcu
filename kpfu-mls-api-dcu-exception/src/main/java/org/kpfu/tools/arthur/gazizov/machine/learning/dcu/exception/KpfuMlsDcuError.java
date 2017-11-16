@@ -15,12 +15,14 @@ public enum KpfuMlsDcuError {
 
   TAG_NOT_FOUND(1_001_003, HttpStatus.NOT_FOUND, "Tag not found"),
 
+  META_IMAGE_INFO_NOT_FOUND(1_001_004, HttpStatus.NOT_FOUND, "Meta image info not found"),
+
 
   VALIDATION_ERROR(1_002_001, HttpStatus.BAD_REQUEST, "Validation Error"),
 
   UNSUPPORTED_OPERATION(1_900_001, HttpStatus.BAD_REQUEST, "Unsupported operation");
 
-  private int code;
+  private Integer code;
   private HttpStatus httpStatus;
   private String defaultMessage;
 
@@ -30,7 +32,7 @@ public enum KpfuMlsDcuError {
     this.defaultMessage = defaultMessage;
   }
 
-  public int getCode() {
+  public Integer getCode() {
     return code;
   }
 

@@ -3,6 +3,7 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.service;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.DataSetDao;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.exception.KpfuMlsDcuError;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.DataSetModel;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.support.PageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -63,5 +64,10 @@ public class DataSetServiceImpl implements DataSetService {
   public List<DataSetModel> findAll() {
     return StreamSupport.stream(dataSetDao.findAll().spliterator(), false)
             .collect(Collectors.toList());
+  }
+
+  @Override
+  public PageModel<DataSetModel> findAll(Integer limit, Integer offset) {
+    return dataSetDao.findAll(limit, offset);
   }
 }

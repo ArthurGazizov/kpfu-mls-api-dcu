@@ -1,6 +1,7 @@
-package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor;
+package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.proxy;
 
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.TagDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.support.PageResponse;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.interfaces.TagProcessor;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.util.ValidationReportChecker;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.interfaces.TagDtoValidator;
@@ -71,5 +72,11 @@ public class TagProcessorProxyImpl implements TagProcessor {
   @Override
   public ResponseEntity<List<TagDto>> findAll() {
     return tagProcessor.findAll();
+  }
+
+  @Override
+  public ResponseEntity<PageResponse<TagDto>> findAll(Integer limit, Integer offset) {
+    Objects.requireNonNull(limit);
+    return tagProcessor.findAll(limit, offset);
   }
 }

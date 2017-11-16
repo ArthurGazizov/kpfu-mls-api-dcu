@@ -2,9 +2,11 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.config;
 
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.impl.DataSetDtoValidatorImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.impl.DataSetElementDtoValidatorImpl;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.impl.MetaImageInfoDtoValidatorImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.impl.TagDtoValidatorImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.interfaces.DataSetDtoValidator;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.interfaces.DataSetElementDtoValidator;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.interfaces.MetaImageInfoDtoValidator;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.interfaces.TagDtoValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,5 +30,10 @@ public class ValidationConfig {
   @Bean
   public TagDtoValidator tagDtoValidator() {
     return new TagDtoValidatorImpl();
+  }
+
+  @Bean
+  public MetaImageInfoDtoValidator metaImageDtoValidator() {
+    return new MetaImageInfoDtoValidatorImpl();
   }
 }

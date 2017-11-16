@@ -48,6 +48,10 @@
             <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
             <artifactId>kpfu-mls-api-dcu-exception</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -70,6 +74,7 @@
                                 kpfu_dcu_data.data_set
                                 | kpfu_dcu_data.data_set_element
                                 | kpfu_dcu_data.tag
+                                | kpfu_dcu_data.meta_image_info
                             </includes>
                             <excludes>pg_catalog.*|information_schema.*|pg_toast.*</excludes>
                         </database>

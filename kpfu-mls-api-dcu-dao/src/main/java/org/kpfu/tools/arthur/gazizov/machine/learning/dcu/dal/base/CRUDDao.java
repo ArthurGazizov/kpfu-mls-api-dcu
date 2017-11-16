@@ -1,8 +1,11 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.base;
 
+import org.jooq.Condition;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.Model;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.support.PageModel;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
@@ -26,6 +29,10 @@ public interface CRUDDao<I extends Serializable, E extends Model> {
   Iterable<E> findAll();
 
   Iterable<E> findAll(Iterable<I> iterable);
+
+  PageModel<E> findAll(Integer limit, Integer offset);
+
+  PageModel<E> search(List<Condition> conditions, Integer limit, Integer offset);
 
   long count();
 

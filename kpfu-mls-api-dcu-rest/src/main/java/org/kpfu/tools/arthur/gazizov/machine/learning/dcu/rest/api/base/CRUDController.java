@@ -1,6 +1,7 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.rest.api.base;
 
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.Dto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.common.Dto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.support.PageResponse;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.base.CRUDProcessor;
 import org.springframework.http.ResponseEntity;
 
@@ -33,6 +34,10 @@ public interface CRUDController<T extends Dto> {
 
   default ResponseEntity<List<T>> findAll() {
     return processor().findAll();
+  }
+
+  default ResponseEntity<PageResponse<T>> findAll(Integer limit, Integer offset) {
+    return processor().findAll(limit, offset);
   }
 
   CRUDProcessor<T> processor();
