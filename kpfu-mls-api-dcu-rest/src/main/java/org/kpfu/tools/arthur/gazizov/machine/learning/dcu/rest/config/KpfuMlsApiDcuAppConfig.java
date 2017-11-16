@@ -7,13 +7,11 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.config.KpfuMlsDcuServerConfig;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.web.utils.DcuControllerAdvice;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.web.utils.DcuControllerAdviceImpl;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
@@ -22,9 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 @Configuration
 @ComponentScan("org.kpfu.tools.arthur.gazizov.machine.learning.dcu.rest")
 @Import({
-        KpfuMlsDcuServerConfig.class,
-        KpfuMlsDcuServerConfig.class
-})
+        KpfuMlsDcuServerConfig.class})
 public class KpfuMlsApiDcuAppConfig {
   @Bean
   public DcuControllerAdvice dcuControllerAdvice() {

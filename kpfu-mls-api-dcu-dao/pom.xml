@@ -69,6 +69,7 @@
                             <includes>
                                 kpfu_dcu_data.data_set
                                 | kpfu_dcu_data.data_set_element
+                                | kpfu_dcu_data.tag
                             </includes>
                             <excludes>pg_catalog.*|information_schema.*|pg_toast.*</excludes>
                         </database>

@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.test.config.BaseDalTestConfig;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.DataSetElementModel;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.DataSetModel;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.TagModel;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener;
@@ -35,6 +36,13 @@ public abstract class AbstractDaoTest {
   protected DataSetElementModel generateDataSetElement() {
     return DataSetElementModel.Builder.aDataSetElementModel()
             .imageId(ThreadLocalRandom.current().nextLong())
+            .build();
+  }
+
+  protected TagModel generateTag() {
+    return TagModel.Builder.aTagModel()
+            .name(UUID.randomUUID().toString())
+            .code(UUID.randomUUID().toString())
             .build();
   }
 }

@@ -4,6 +4,7 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.DataSetElementDto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.Valid;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.interfaces.DataSetElementDtoValidator;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.report.ValidationReport;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +17,7 @@ import static org.kpfu.tools.arthur.gazizov.machine.learning.dcu.validator.Util.
  * @author Arthur Gazizov (Cinarra Systems)
  * Created on 11.11.17.
  */
+@Component
 public class DataSetElementDtoValidatorImpl implements DataSetElementDtoValidator {
   @Override
   public ValidationReport validateToSave(DataSetElementDto dto) {

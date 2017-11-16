@@ -3,13 +3,14 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal;
 import org.jooq.Field;
 import org.jooq.Table;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.base.AbstractCRUDDao;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.jooq.kpfu_dcu_data.tables.DataSet;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.jooq.kpfu_dcu_data.tables.records.DataSetRecord;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.base.Mapper;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.interfaces.DataSetMapper;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.DataSetModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import static org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.jooq.kpfu_dcu_data.tables.DataSet.DATA_SET;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
@@ -22,7 +23,7 @@ public class DataSetDaoImpl extends AbstractCRUDDao<DataSetModel, DataSetRecord>
 
   @Override
   protected Table<DataSetRecord> table() {
-    return DataSet.DATA_SET;
+    return DATA_SET;
   }
 
   @Override
@@ -32,6 +33,6 @@ public class DataSetDaoImpl extends AbstractCRUDDao<DataSetModel, DataSetRecord>
 
   @Override
   protected Field<Long> idField() {
-    return DataSet.DATA_SET.DATA_SET_ID;
+    return DATA_SET.DATA_SET_ID;
   }
 }
