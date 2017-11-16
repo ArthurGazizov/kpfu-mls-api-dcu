@@ -4,10 +4,14 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.DataSetDao;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.DataSetDaoImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.DataSetElementDao;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.DataSetElementDaoImpl;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.TagDao;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.TagDaoImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.impl.DataSetElementMapperImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.impl.DataSetMapperImpl;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.impl.TagMapperImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.interfaces.DataSetElementMapper;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.interfaces.DataSetMapper;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.interfaces.TagMapper;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -40,6 +44,16 @@ public class DaoConfig {
   @Bean
   public DataSetElementDao dataSetElementDao() {
     return new DataSetElementDaoImpl();
+  }
+
+  @Bean
+  public TagMapper tagMapper() {
+    return new TagMapperImpl();
+  }
+
+  @Bean
+  public TagDao tagDao() {
+    return new TagDaoImpl();
   }
 
   @Bean

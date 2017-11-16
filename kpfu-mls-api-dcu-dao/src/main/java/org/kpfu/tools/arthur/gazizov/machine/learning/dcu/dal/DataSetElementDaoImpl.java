@@ -3,13 +3,14 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal;
 import org.jooq.Field;
 import org.jooq.Table;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.base.AbstractCRUDDao;
-import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.jooq.kpfu_dcu_data.tables.DataSetElement;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.jooq.kpfu_dcu_data.tables.records.DataSetElementRecord;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.base.Mapper;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.interfaces.DataSetElementMapper;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.DataSetElementModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import static org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.jooq.kpfu_dcu_data.tables.DataSetElement.DATA_SET_ELEMENT;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
@@ -22,7 +23,7 @@ public class DataSetElementDaoImpl extends AbstractCRUDDao<DataSetElementModel, 
 
   @Override
   protected Table<DataSetElementRecord> table() {
-    return DataSetElement.DATA_SET_ELEMENT;
+    return DATA_SET_ELEMENT;
   }
 
   @Override
@@ -32,6 +33,6 @@ public class DataSetElementDaoImpl extends AbstractCRUDDao<DataSetElementModel, 
 
   @Override
   protected Field<Long> idField() {
-    return DataSetElement.DATA_SET_ELEMENT.DATA_SET_ELEMENT_ID;
+    return DATA_SET_ELEMENT.DATA_SET_ELEMENT_ID;
   }
 }

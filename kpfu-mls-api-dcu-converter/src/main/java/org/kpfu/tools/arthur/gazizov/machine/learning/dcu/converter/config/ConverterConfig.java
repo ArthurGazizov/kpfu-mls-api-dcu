@@ -5,9 +5,11 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.factory.Conv
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.impl.DataSetConverterImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.impl.DataSetElementConverterImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.impl.MetaInfoConverterImpl;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.impl.TagConverterImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.DataSetConverter;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.DataSetElementConverter;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.MetaInfoConverter;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.TagConverter;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.converter.interfaces.base.Converter;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.Dto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.Model;
@@ -40,5 +42,10 @@ public class ConverterConfig {
   @Bean
   public DataSetElementConverter dataSetElementConverter() {
     return new DataSetElementConverterImpl();
+  }
+
+  @Bean
+  public TagConverter tagConverter() {
+    return new TagConverterImpl();
   }
 }
