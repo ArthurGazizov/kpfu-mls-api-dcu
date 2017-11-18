@@ -166,4 +166,43 @@ public class DataSetElementControllerImpl implements DataSetElementController {
   public CRUDProcessor<DataSetElementDto> processor() {
     return dataSetElementProcessor;
   }
+
+  @ApiOperation(value = "Get page dataset's elements by data set id", notes = "", response = PageResponse.class)
+  @ApiResponses(value = {
+          @ApiResponse(code = 201, message = "", response = PageResponse.class),
+          @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
+          @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
+          @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
+          @ApiResponse(code = 500, message = "Something exceptional happened", response = ErrorDto.class)
+  })
+  @RequestMapping(
+          value = "/{dataSetId}/elements",
+          produces = {"application/json"},
+          method = RequestMethod.GET)
+  @Override
+  public ResponseEntity<PageResponse<DataSetElementDto>> searchByDataSetId(@ApiParam(value = "dataSetId", required = true)
+                                                                           @PathVariable(value = "dataSetId") Long dataSetId,
+                                                                           @ApiParam(value = "limit", required = true)
+                                                                           @RequestParam(value = "limit", required = true) Integer limit,
+                                                                           @ApiParam(value = "offset", required = false)
+                                                                           @RequestParam(value = "offset", required = false) Integer offset) {
+    return dataSetElementProcessor.searchByDataSetId(dataSetId, limit, offset);
+  }
+
+  @ApiOperation(value = "Get count dataset's elements by data set id", notes = "", response = Integer.class)
+  @ApiResponses(value = {
+          @ApiResponse(code = 201, message = "", response = Integer.class),
+          @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
+          @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
+          @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
+          @ApiResponse(code = 500, message = "Something exceptional happened", response = ErrorDto.class)
+  })
+  @RequestMapping(
+          value = "/{dataSetId}/elements/count",
+          produces = {"application/json"},
+          method = RequestMethod.GET)
+  @Override
+  public ResponseEntity<Integer> elementsCountInDataSet(Long dataSetId) {
+    return dataSetElementProcessor.elementsCountInDataSet(dataSetId);
+  }
 }

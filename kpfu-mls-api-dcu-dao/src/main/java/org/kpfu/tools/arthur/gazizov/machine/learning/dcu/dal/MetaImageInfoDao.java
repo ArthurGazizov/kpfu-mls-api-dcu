@@ -8,4 +8,5 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.image.MetaImageI
  * Created on 16.11.17.
  */
 public interface MetaImageInfoDao extends CRUDDao<Long, MetaImageInfoModel> {
+  MetaImageInfoModel findByImageId(Long imageId);
 }

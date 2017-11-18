@@ -31,6 +31,13 @@ public class MetaImageInfoServiceImpl implements MetaImageInfoService {
   }
 
   @Override
+  public MetaImageInfoModel findByImageId(Long imageId) {
+    return Optional.of(imageId)
+            .map(metaImageInfoDao::findByImageId)
+            .orElseThrow(KpfuMlsDcuError.META_IMAGE_INFO_NOT_FOUND::exception);
+  }
+
+  @Override
   public MetaImageInfoModel get(Long id) {
     return Optional.of(id)
             .map(metaImageInfoDao::find)

@@ -79,4 +79,17 @@ public class DataSetElementProcessorProxyImpl implements DataSetElementProcessor
     Objects.requireNonNull(limit);
     return dataSetElementProcessor.findAll(limit, offset);
   }
+
+  @Override
+  public ResponseEntity<PageResponse<DataSetElementDto>> searchByDataSetId(Long dataSetId, Integer limit, Integer offset) {
+    Objects.requireNonNull(dataSetId);
+    Objects.requireNonNull(limit);
+    return dataSetElementProcessor.searchByDataSetId(dataSetId, limit, offset);
+  }
+
+  @Override
+  public ResponseEntity<Integer> elementsCountInDataSet(Long dataSetId) {
+    Objects.requireNonNull(dataSetId);
+    return dataSetElementProcessor.elementsCountInDataSet(dataSetId);
+  }
 }

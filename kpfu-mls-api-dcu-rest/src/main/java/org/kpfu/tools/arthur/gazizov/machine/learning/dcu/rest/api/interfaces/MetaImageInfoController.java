@@ -11,4 +11,5 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface MetaImageInfoController extends CRUDController<MetaImageInfoDto> {
   ResponseEntity<MetaImageInfoDto> upload(MultipartFile multipartFile, MetaImageInfoDto metaImageInfoDto);
+  ResponseEntity<MetaImageInfoDto> findByImageId(Long imageId);
 }

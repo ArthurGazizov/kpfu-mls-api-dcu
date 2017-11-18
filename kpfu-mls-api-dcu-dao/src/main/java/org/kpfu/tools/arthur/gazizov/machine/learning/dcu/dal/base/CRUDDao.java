@@ -34,6 +34,12 @@ public interface CRUDDao<I extends Serializable, E extends Model> {
 
   PageModel<E> search(List<Condition> conditions, Integer limit, Integer offset);
 
+  E findOne(List<Condition> conditions);
+
+  Iterable<E> findAll(List<Condition> conditions);
+
+  long count(List<Condition> conditions);
+
   long count();
 
   boolean exist(I id);

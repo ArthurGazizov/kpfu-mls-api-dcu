@@ -37,6 +37,12 @@ public class MetaImageInfoProcessorProxyImpl implements MetaImageInfoProcessor {
   }
 
   @Override
+  public ResponseEntity<MetaImageInfoDto> findByImageId(Long imageId) {
+    Objects.requireNonNull(imageId);
+    return metaImageInfoProcessor.findByImageId(imageId);
+  }
+
+  @Override
   public ResponseEntity<MetaImageInfoDto> get(Long id) {
     Objects.requireNonNull(id);
     return metaImageInfoProcessor.get(id);

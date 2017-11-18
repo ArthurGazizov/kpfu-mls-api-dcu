@@ -50,7 +50,6 @@ public class DataSetElementMapperImpl implements DataSetElementMapper {
   @Override
   public DataSetElementRecord mapToEntity(DataSetElementModel model) {
     final DataSetElementRecord dataSetElementRecord = new DataSetElementRecord();
-    dataSetElementRecord.setDataSetElementId(model.getDatasetId());
     dataSetElementRecord.setDataSetId(model.getDatasetId());
     dataSetElementRecord.setDataSetElementImageId(model.getImageId());
     dataSetElementRecord.setDataSetElementIsDeleted(Optional.ofNullable(model.getDeleted()).orElse(false));

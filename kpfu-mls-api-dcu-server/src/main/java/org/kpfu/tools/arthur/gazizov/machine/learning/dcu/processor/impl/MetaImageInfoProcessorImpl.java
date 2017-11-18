@@ -29,6 +29,11 @@ public class MetaImageInfoProcessorImpl implements MetaImageInfoProcessor {
   }
 
   @Override
+  public ResponseEntity<MetaImageInfoDto> findByImageId(Long imageId) {
+    return metaImageInfoProcessor.findByImageId(imageId);
+  }
+
+  @Override
   public ResponseEntity<MetaImageInfoDto> get(Long id) {
     return metaImageInfoProcessor.get(id);
   }
