@@ -11,7 +11,7 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.meta.MetaInfoDto;
  */
 public class MetaImageInfoDto extends BaseDto {
   @ApiModelProperty(
-          notes = "The database generated bounding box ID"
+          notes = "The database meta image info ID"
           , name = "id"
           , example = "123456"
           , readOnly = true)

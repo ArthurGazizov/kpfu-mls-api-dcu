@@ -9,6 +9,7 @@ import org.jooq.SelectQuery;
 import org.jooq.SelectSelectStep;
 import org.jooq.Table;
 import org.jooq.UpdatableRecord;
+import org.jooq.impl.DSL;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.mapper.base.Mapper;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.exception.KpfuMlsDcuError;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.EntityModel;
@@ -17,6 +18,7 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.support.PageMode
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -145,6 +147,42 @@ public abstract class AbstractCRUDDao<E extends EntityModel, R extends Updatable
   }
 
   @Override
+  public E findOne(List<Condition> conditions) {
+    final SelectQuery<Record> selectQuery = getDslContext().selectQuery();
+    selectQuery.addFrom(table());
+    selectQuery.addSelect(selectFields());
+    selectQuery.addConditions(conditions);
+    return Optional.ofNullable(getDslContext()
+            .select(selectFields())
+            .from(table())
+            .where(conditions)
+            .fetchOne())
+            .map(r -> mapper().mapToModel(r))
+            .orElse(null);
+  }
+
+  @Override
+  public Iterable<E> findAll(List<Condition> conditions) {
+    return getDslContext()
+            .select(selectFields())
+            .from(table())
+            .where(conditions)
+            .fetch()
+            .stream()
+            .map(r -> mapper().mapToModel(r))
+            .collect(Collectors.toList());
+  }
+
+  @Override
+  public long count(List<Condition> conditions) {
+    if (conditions.isEmpty()) {
+      return getDslContext().fetchCount(table());
+    } else {
+      return getDslContext().fetchCount(table(), DSL.and(conditions));
+    }
+  }
+
+  @Override
   public long count() {
     return getDslContext()
             .fetchCount(table());
@@ -163,12 +201,7 @@ public abstract class AbstractCRUDDao<E extends EntityModel, R extends Updatable
 
   @Override
   public E find(Long id) {
-    final Record record = getDslContext()
-            .select(selectFields())
-            .from(table())
-            .where(idField().eq(id))
-            .fetchOne();
-    return mapper().mapToModel(record);
+    return findOne(Collections.singletonList(idField().eq(id)));
   }
 
   @Override

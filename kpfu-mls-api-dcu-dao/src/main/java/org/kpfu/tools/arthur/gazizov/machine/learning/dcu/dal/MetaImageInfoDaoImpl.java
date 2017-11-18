@@ -10,6 +10,8 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.image.MetaImageI
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
+
 import static org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.jooq.kpfu_dcu_data.tables.MetaImageInfo.META_IMAGE_INFO;
 
 /**
@@ -34,5 +36,10 @@ public class MetaImageInfoDaoImpl extends AbstractCRUDDao<MetaImageInfoModel, Me
   @Override
   protected Field<Long> idField() {
     return META_IMAGE_INFO.META_IMAGE_INFO_ID;
+  }
+
+  @Override
+  public MetaImageInfoModel findByImageId(Long imageId) {
+    return findOne(Collections.singletonList(META_IMAGE_INFO.META_IMAGE_INFO_IMAGE_ID.eq(imageId)));
   }
 }

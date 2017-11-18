@@ -182,10 +182,28 @@ public class MetaImageInfoControllerImpl implements MetaImageInfoController {
           produces = {"application/json"},
           method = RequestMethod.POST)
   @Override
-  public ResponseEntity<MetaImageInfoDto> upload(@ApiParam(value = "file detail")
-                                                 @RequestPart(value = "file", required = true) MultipartFile multipartFile,
+  public ResponseEntity<MetaImageInfoDto> upload(@ApiParam(value = "file detail", name = "multipartFile")
+                                                 @RequestPart(value = "multipartFile", required = true) MultipartFile multipartFile,
                                                  @ApiParam(value = "metaImageInfoDto", required = true)
                                                  @RequestBody MetaImageInfoDto metaImageInfoDto) {
     return metaImageInfoProcessor.upload(multipartFile, metaImageInfoDto);
+  }
+
+  @ApiOperation(value = "Get meta image info by image id", notes = "", response = MetaImageInfoDto.class)
+  @ApiResponses(value = {
+          @ApiResponse(code = 200, message = "", response = MetaImageInfoDto.class),
+          @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
+          @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
+          @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
+          @ApiResponse(code = 500, message = "Something exceptional happened", response = ErrorDto.class)
+  })
+  @RequestMapping(
+          value = "/image/findByImageId",
+          produces = {"application/json"},
+          method = RequestMethod.GET)
+  @Override
+  public ResponseEntity<MetaImageInfoDto> findByImageId(@ApiParam(value = "imageId", required = true)
+                                                        @RequestParam("imageId") Long imageId) {
+    return metaImageInfoProcessor.findByImageId(imageId);
   }
 }

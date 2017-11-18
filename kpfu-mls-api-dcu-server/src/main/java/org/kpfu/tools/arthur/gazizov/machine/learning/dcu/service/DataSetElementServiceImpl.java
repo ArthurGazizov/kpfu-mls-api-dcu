@@ -46,7 +46,7 @@ public class DataSetElementServiceImpl implements DataSetElementService {
     if (Objects.nonNull(dataSetElementModel.getImageId())) {
       model.setImageId(dataSetElementModel.getImageId());
     }
-    if (Objects.nonNull(dataSetElementModel.getDatasetId())){
+    if (Objects.nonNull(dataSetElementModel.getDatasetId())) {
       model.setDatasetId(dataSetElementModel.getDatasetId());
     }
     return dataSetElementDao.update(model);
@@ -72,5 +72,20 @@ public class DataSetElementServiceImpl implements DataSetElementService {
   @Override
   public PageModel<DataSetElementModel> findAll(Integer limit, Integer offset) {
     return dataSetElementDao.findAll(limit, offset);
+  }
+
+  @Override
+  public PageModel<DataSetElementModel> searchByDataSetId(Long dataSetId, Integer limit, Integer offset) {
+    return dataSetElementDao.searchByDataSetId(dataSetId, limit, offset);
+  }
+
+  @Override
+  public List<DataSetElementModel> searchByDataSetId(Long dataSetId) {
+    return dataSetElementDao.searchByDataSetId(dataSetId);
+  }
+
+  @Override
+  public Integer elementsCountInDataSet(Long dataSetId) {
+    return dataSetElementDao.elementsCountInDataSet(dataSetId);
   }
 }

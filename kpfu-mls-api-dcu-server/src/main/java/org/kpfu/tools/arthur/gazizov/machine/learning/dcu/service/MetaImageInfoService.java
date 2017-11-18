@@ -9,4 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface MetaImageInfoService extends CRUDService<MetaImageInfoModel> {
   MetaImageInfoModel upload(MultipartFile file, MetaImageInfoModel metaImageInfoModel);
+
+  MetaImageInfoModel findByImageId(Long imageId);
 }

@@ -7,11 +7,14 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.config.KpfuMlsDcuServerConfig;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.web.utils.DcuControllerAdvice;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.web.utils.DcuControllerAdviceImpl;
+import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+
+import javax.servlet.MultipartConfigElement;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
@@ -25,6 +28,14 @@ public class KpfuMlsApiDcuAppConfig {
   @Bean
   public DcuControllerAdvice dcuControllerAdvice() {
     return new DcuControllerAdviceImpl();
+  }
+
+  @Bean
+  public MultipartConfigElement multipartConfigElement() {
+    MultipartConfigFactory multipartConfigFactory = new MultipartConfigFactory();
+    multipartConfigFactory.setMaxFileSize("10MB");
+    multipartConfigFactory.setMaxRequestSize("50MB");
+    return multipartConfigFactory.createMultipartConfig();
   }
 
   @Bean
