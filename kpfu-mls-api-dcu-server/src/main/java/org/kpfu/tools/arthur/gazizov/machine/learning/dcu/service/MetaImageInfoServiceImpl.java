@@ -4,6 +4,7 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.MetaImageInfoDao;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.exception.KpfuMlsDcuError;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.image.MetaImageInfoModel;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.support.PageModel;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.service.fs.FsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +23,9 @@ import java.util.stream.StreamSupport;
 public class MetaImageInfoServiceImpl implements MetaImageInfoService {
   @Autowired
   private MetaImageInfoDao metaImageInfoDao;
+
+  @Autowired
+  private FsService fsService;
 
   @Override
   public MetaImageInfoModel upload(MultipartFile file, MetaImageInfoModel metaImageInfoModel) {
@@ -81,7 +85,6 @@ public class MetaImageInfoServiceImpl implements MetaImageInfoService {
   }
 
   private Long saveFile(MultipartFile multipartFile) {
-    // TODO: 16.11.17 use kpfu-mls-fs-client to upload
-    return (long) Math.abs(ThreadLocalRandom.current().nextInt());
+    return fsService.saveImage(multipartFile);
   }
 }

@@ -20,6 +20,7 @@ import org.springframework.context.annotation.Import;
         DaoConfig.class
         , ConverterConfig.class
         , ValidationConfig.class
+        , KpfuMlsDcuServerRestClientsConfig.class
 })
 @ComponentScan(
         basePackages = {
@@ -29,7 +30,7 @@ import org.springframework.context.annotation.Import;
 )
 public class KpfuMlsDcuServerConfig {
   @Bean
-  @ConfigurationProperties
+  @ConfigurationProperties(prefix = "dcu")
   public KpfuMlsDcuServerConfigurationProperties kpfuMlsDcuConfigurationProperties() {
     return new KpfuMlsDcuServerConfigurationProperties();
   }
