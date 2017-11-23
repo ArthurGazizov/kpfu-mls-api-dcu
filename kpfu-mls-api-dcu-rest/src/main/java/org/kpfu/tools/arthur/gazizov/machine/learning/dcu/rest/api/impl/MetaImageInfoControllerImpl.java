@@ -169,7 +169,9 @@ public class MetaImageInfoControllerImpl implements MetaImageInfoController {
     return metaImageInfoProcessor;
   }
 
-  @ApiOperation(value = "Upload meta image info", notes = "", response = MetaImageInfoDto.class)
+  @ApiOperation(value = "Upload meta image info", notes = "", response = MetaImageInfoDto.class,
+          consumes = "multipart/form-data, application/json, application/octet-stream",
+          produces = "application/json")
   @ApiResponses(value = {
           @ApiResponse(code = 201, message = "", response = MetaImageInfoDto.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
@@ -179,13 +181,15 @@ public class MetaImageInfoControllerImpl implements MetaImageInfoController {
   })
   @RequestMapping(
           value = "/image/upload",
-          produces = {"application/json"},
+          consumes = {"multipart/form-data", "application/json", "application/octet-stream"},
+          produces = "application/json",
           method = RequestMethod.POST)
   @Override
-  public ResponseEntity<MetaImageInfoDto> upload(@ApiParam(value = "file detail", name = "multipartFile")
-                                                 @RequestPart(value = "multipartFile", required = true) MultipartFile multipartFile,
-                                                 @ApiParam(value = "metaImageInfoDto", required = true)
-                                                 @RequestBody MetaImageInfoDto metaImageInfoDto) {
+  public ResponseEntity<MetaImageInfoDto> upload(
+          @ApiParam(value = "file detail", name = "multipartFile", required = true, type = "file")
+          @RequestPart(value = "multipartFile", required = true) MultipartFile multipartFile,
+          @ApiParam(value = "metaImageInfoDto", required = true)
+          @RequestPart(value = "metaImageInfoDto", required = true) MetaImageInfoDto metaImageInfoDto) {
     return metaImageInfoProcessor.upload(multipartFile, metaImageInfoDto);
   }
 

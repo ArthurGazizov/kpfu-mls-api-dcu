@@ -46,8 +46,8 @@ public class MetaImageInfoProcessorRealImpl extends AbstractCRUDProcessorImpl<Me
 
   @Override
   public ResponseEntity<MetaImageInfoDto> findByImageId(Long imageId) {
-    final MetaImageInfoModel finded = metaImageInfoService.findByImageId(imageId);
-    final MetaImageInfoDto dto = converter().convert(finded);
+    final MetaImageInfoModel found = metaImageInfoService.findByImageId(imageId);
+    final MetaImageInfoDto dto = converter().convert(found);
     return ResponseEntity.ok(dto);
   }
 }

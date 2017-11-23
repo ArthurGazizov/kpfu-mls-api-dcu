@@ -1,6 +1,5 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.DataSetDao;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.DataSetDaoImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.DataSetElementDao;

@@ -26,6 +26,10 @@
         <module>kpfu-mls-api-dcu-web-utils</module>
     </modules>
 
+    <properties>
+        <kpfu.mls.fs.version>0.0.1-SNAPSHOT</kpfu.mls.fs.version>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -87,6 +91,11 @@
                 <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
                 <artifactId>kpfu-mls-api-dcu-web-utils</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+                <artifactId>kpfu-mls-fs-client</artifactId>
+                <version>${kpfu.mls.fs.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
