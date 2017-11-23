@@ -21,6 +21,9 @@ public class BoundingBoxDtoConverterImpl implements BoundingBoxDtoConverter {
 
   @Override
   public BoundingBoxDto convert(BoundingBox model) {
+    if (model == null){
+      return null;
+    }
     return BoundingBoxDto.Builder.aBoundingBoxDto()
             .points(model.getPoints().stream()
                     .map(pointDtoConverter::convert)
@@ -30,6 +33,9 @@ public class BoundingBoxDtoConverterImpl implements BoundingBoxDtoConverter {
 
   @Override
   public BoundingBox convert(BoundingBoxDto dto) {
+    if (dto == null){
+      return null;
+    }
     return BoundingBox.Builder.aBoundingBox()
             .points(dto.getPoints().stream()
                     .map(pointDtoConverter::convert)
