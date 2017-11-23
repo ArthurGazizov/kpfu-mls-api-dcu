@@ -1,5 +1,6 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.rest.api.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -36,6 +38,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class MetaImageInfoControllerImpl implements MetaImageInfoController {
   @Autowired
   private MetaImageInfoProcessor metaImageInfoProcessor;
+
+  @Autowired
+  private ObjectMapper objectMapper;
 
   @ApiOperation(value = "Get meta image info", notes = "", response = MetaImageInfoDto.class)
   @ApiResponses(value = {
@@ -169,7 +174,8 @@ public class MetaImageInfoControllerImpl implements MetaImageInfoController {
     return metaImageInfoProcessor;
   }
 
-  @ApiOperation(value = "Upload meta image info", notes = "", response = MetaImageInfoDto.class,
+  @ApiOperation(
+          value = "Upload meta image info", notes = "", response = MetaImageInfoDto.class,
           consumes = "multipart/form-data, application/json, application/octet-stream",
           produces = "application/json")
   @ApiResponses(value = {
@@ -188,8 +194,10 @@ public class MetaImageInfoControllerImpl implements MetaImageInfoController {
   public ResponseEntity<MetaImageInfoDto> upload(
           @ApiParam(value = "file detail", name = "multipartFile", required = true, type = "file")
           @RequestPart(value = "multipartFile", required = true) MultipartFile multipartFile,
-          @ApiParam(value = "metaImageInfoDto", required = true)
-          @RequestPart(value = "metaImageInfoDto", required = true) MetaImageInfoDto metaImageInfoDto) {
+          @ApiParam(value = "metaImageInfoDtoAsString", required = true)
+          @RequestPart(value = "metaImageInfoDtoAsString", required = true) String metaImageInfoDtoAsString) throws IOException {
+    // TODO: 23/11/2017 handle and specify exception
+    final MetaImageInfoDto metaImageInfoDto = objectMapper.treeToValue(objectMapper.readTree(metaImageInfoDtoAsString), MetaImageInfoDto.class);
     return metaImageInfoProcessor.upload(multipartFile, metaImageInfoDto);
   }
 

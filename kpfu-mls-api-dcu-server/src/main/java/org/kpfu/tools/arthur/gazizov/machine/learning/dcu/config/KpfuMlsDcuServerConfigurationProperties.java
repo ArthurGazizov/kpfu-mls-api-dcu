@@ -5,6 +5,8 @@ package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.config;
  * Created on 09.11.17.
  */
 public class KpfuMlsDcuServerConfigurationProperties {
+  private String imageStorePath;
+
   private String mlsFsServerUrl;
 
   private boolean enableFsMicroservice;
@@ -23,5 +25,13 @@ public class KpfuMlsDcuServerConfigurationProperties {
 
   public void setEnableFsMicroservice(boolean enableFsMicroservice) {
     this.enableFsMicroservice = enableFsMicroservice;
+  }
+
+  public String getImageStorePath() {
+    return imageStorePath;
+  }
+
+  public void setImageStorePath(String imageStorePath) {
+    this.imageStorePath = imageStorePath;
   }
 }

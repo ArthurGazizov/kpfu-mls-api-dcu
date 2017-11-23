@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
         <artifactId>kpfu-tools-arthur-gazizov-machine-learning-parent-pom</artifactId>
-        <version>0.0.2-SNAPSHOT</version>
+        <version>0.0.2</version>
     </parent>
 
     <modules>
@@ -28,6 +28,7 @@
 
     <properties>
         <kpfu.mls.fs.version>0.0.1-SNAPSHOT</kpfu.mls.fs.version>
+        <kpfu.mls.db.version>0.0.2</kpfu.mls.db.version>
     </properties>
 
     <dependencyManagement>
