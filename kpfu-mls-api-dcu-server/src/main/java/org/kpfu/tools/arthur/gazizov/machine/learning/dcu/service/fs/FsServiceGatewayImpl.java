@@ -1,7 +1,11 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.service.fs;
 
+import org.kpfu.tools.arthur.gazizov.machine.learning.fs.client.FsClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
@@ -9,8 +13,17 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Service("fsServiceGatewayImpl")
 public class FsServiceGatewayImpl implements FsService {
+  @Autowired
+  private FsClient fsClient;
+
   @Override
   public Long saveImage(MultipartFile file) {
-    return null;
+    try {
+      final byte[] bytes = file.getBytes();
+      return fsClient.uploadOriginImage(bytes);
+    } catch (IOException e) {
+      // TODO: 24/11/2017 specify me
+      throw new RuntimeException(e);
+    }
   }
 }
