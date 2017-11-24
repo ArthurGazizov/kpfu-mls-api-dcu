@@ -30,6 +30,7 @@
     <properties>
         <kpfu.mls.fs.version>0.0.1-SNAPSHOT</kpfu.mls.fs.version>
         <kpfu.mls.db.version>0.0.3-SNAPSHOT</kpfu.mls.db.version>
+        <kpfu.mls.engine.inference.version>0.0.1-SNAPSHOT</kpfu.mls.engine.inference.version>
     </properties>
 
     <dependencyManagement>
@@ -98,6 +99,11 @@
                 <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
                 <artifactId>kpfu-mls-fs-client</artifactId>
                 <version>${kpfu.mls.fs.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+                <artifactId>kpfu-mls-engine-inference-client</artifactId>
+                <version>${kpfu.mls.engine.inference.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

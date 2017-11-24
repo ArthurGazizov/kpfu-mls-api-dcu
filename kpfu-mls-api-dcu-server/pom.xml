@@ -58,5 +58,9 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+            <artifactId>kpfu-mls-engine-inference-client</artifactId>
+        </dependency>
     </dependencies>
 </project>
