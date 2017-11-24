@@ -9,6 +9,8 @@ public class KpfuMlsDcuServerConfigurationProperties {
 
   private String mlsFsServerUrl;
 
+  private String mlsEngineInferenceServerUrl;
+
   private boolean enableFsMicroservice;
 
   private boolean enableInference;
@@ -53,5 +55,13 @@ public class KpfuMlsDcuServerConfigurationProperties {
 
   public void setEnableInferenceMicroservice(boolean enableInferenceMicroservice) {
     this.enableInferenceMicroservice = enableInferenceMicroservice;
+  }
+
+  public String getMlsEngineInferenceServerUrl() {
+    return mlsEngineInferenceServerUrl;
+  }
+
+  public void setMlsEngineInferenceServerUrl(String mlsEngineInferenceServerUrl) {
+    this.mlsEngineInferenceServerUrl = mlsEngineInferenceServerUrl;
   }
 }
