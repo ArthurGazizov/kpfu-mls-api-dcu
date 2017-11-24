@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiResponses;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.ErrorDto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.image.MetaImageInfoDto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.support.PageResponse;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.exception.KpfuMlsDcuError;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.base.CRUDProcessor;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.processor.interfaces.MetaImageInfoProcessor;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.rest.api.interfaces.MetaImageInfoController;
@@ -195,9 +196,14 @@ public class MetaImageInfoControllerImpl implements MetaImageInfoController {
           @ApiParam(value = "file detail", name = "multipartFile", required = true, type = "file")
           @RequestPart(value = "multipartFile", required = true) MultipartFile multipartFile,
           @ApiParam(value = "metaImageInfoDtoAsString", required = true)
-          @RequestPart(value = "metaImageInfoDtoAsString", required = true) String metaImageInfoDtoAsString) throws IOException {
-    // TODO: 23/11/2017 handle and specify exception
-    final MetaImageInfoDto metaImageInfoDto = objectMapper.treeToValue(objectMapper.readTree(metaImageInfoDtoAsString), MetaImageInfoDto.class);
+          @RequestPart(value = "metaImageInfoDtoAsString", required = true) String metaImageInfoDtoAsString) {
+
+    MetaImageInfoDto metaImageInfoDto = null;
+    try {
+      metaImageInfoDto = objectMapper.treeToValue(objectMapper.readTree(metaImageInfoDtoAsString), MetaImageInfoDto.class);
+    } catch (IOException e) {
+      throw KpfuMlsDcuError.INCORRECT_META_IMAGE_INFO_FORMAT.exception(e);
+    }
     return metaImageInfoProcessor.upload(multipartFile, metaImageInfoDto);
   }
 

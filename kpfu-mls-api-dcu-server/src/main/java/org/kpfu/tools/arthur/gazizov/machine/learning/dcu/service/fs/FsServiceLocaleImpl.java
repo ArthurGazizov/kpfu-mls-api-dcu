@@ -8,8 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
@@ -31,12 +29,10 @@ public class FsServiceLocaleImpl implements FsService {
     }
     try {
       FileUtils.writeByteArrayToFile(new File(configurationProperties.getImageStorePath() + file.getOriginalFilename()), bytes);
+      return Math.abs(System.currentTimeMillis());
     } catch (IOException e) {
       e.printStackTrace();
       throw new RuntimeException(e);
     }
-
-    // TODO: 23/11/2017 implement me
-    return Math.abs(ThreadLocalRandom.current().nextInt()) + 1_000_000_000L;
   }
 }

@@ -20,6 +20,8 @@ public enum KpfuMlsDcuError {
 
   VALIDATION_ERROR(1_002_001, HttpStatus.BAD_REQUEST, "Validation Error"),
 
+  INCORRECT_META_IMAGE_INFO_FORMAT(1_002_002, HttpStatus.BAD_REQUEST, "Incorrect meta image info format error"),
+
   UNSUPPORTED_OPERATION(1_900_001, HttpStatus.BAD_REQUEST, "Unsupported operation");
 
   private Integer code;
@@ -54,5 +56,9 @@ public enum KpfuMlsDcuError {
 
   public KpfuMlsDcuException exception(String message, Throwable throwable) {
     return new KpfuMlsDcuException(this, message, throwable);
+  }
+
+  public KpfuMlsDcuException exception(Throwable throwable) {
+    return new KpfuMlsDcuException(this, defaultMessage, throwable);
   }
 }
