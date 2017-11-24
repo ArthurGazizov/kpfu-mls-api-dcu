@@ -11,6 +11,10 @@ public class KpfuMlsDcuServerConfigurationProperties {
 
   private boolean enableFsMicroservice;
 
+  private boolean enableInference;
+
+  private boolean enableInferenceMicroservice;
+
   public String getMlsFsServerUrl() {
     return mlsFsServerUrl;
   }
@@ -33,5 +37,21 @@ public class KpfuMlsDcuServerConfigurationProperties {
 
   public void setImageStorePath(String imageStorePath) {
     this.imageStorePath = imageStorePath;
+  }
+
+  public boolean isEnableInference() {
+    return enableInference;
+  }
+
+  public void setEnableInference(boolean enableInference) {
+    this.enableInference = enableInference;
+  }
+
+  public boolean isEnableInferenceMicroservice() {
+    return enableInferenceMicroservice;
+  }
+
+  public void setEnableInferenceMicroservice(boolean enableInferenceMicroservice) {
+    this.enableInferenceMicroservice = enableInferenceMicroservice;
   }
 }

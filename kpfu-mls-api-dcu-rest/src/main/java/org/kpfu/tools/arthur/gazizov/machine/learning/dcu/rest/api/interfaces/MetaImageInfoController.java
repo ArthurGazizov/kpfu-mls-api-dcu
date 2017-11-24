@@ -12,6 +12,6 @@ import java.io.IOException;
  * Created on 16.11.17.
  */
 public interface MetaImageInfoController extends CRUDController<MetaImageInfoDto> {
-  ResponseEntity<MetaImageInfoDto> upload(MultipartFile multipartFile, String metaImageInfoDto) throws IOException;
+  ResponseEntity<MetaImageInfoDto> upload(MultipartFile multipartFile, String metaImageInfoDto);
   ResponseEntity<MetaImageInfoDto> findByImageId(Long imageId);
 }
