@@ -11,6 +11,7 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.image.pojo.TagPo
 public class MetaImageInfoModel extends BaseEntityModel {
   private Long imageId;
   private TagPositions tagPositions;
+  private String originalFilename;
 
   public Long getImageId() {
     return imageId;
@@ -28,12 +29,21 @@ public class MetaImageInfoModel extends BaseEntityModel {
     this.tagPositions = tagPositions;
   }
 
+  public String getOriginalFilename() {
+    return originalFilename;
+  }
+
+  public void setOriginalFilename(String originalFilename) {
+    this.originalFilename = originalFilename;
+  }
+
   public static final class Builder {
     protected MetaInfoModel metaInfoModel;
     protected Long id;
     protected Boolean isDeleted;
     private Long imageId;
     private TagPositions tagPositions;
+    private String originalFilename;
 
     private Builder() {
     }
@@ -67,12 +77,18 @@ public class MetaImageInfoModel extends BaseEntityModel {
       return this;
     }
 
+    public Builder originalFilename(String originalFilename) {
+      this.originalFilename = originalFilename;
+      return this;
+    }
+
     public MetaImageInfoModel build() {
       MetaImageInfoModel metaImageInfoModel = new MetaImageInfoModel();
       metaImageInfoModel.setMetaInfoModel(metaInfoModel);
       metaImageInfoModel.setId(id);
       metaImageInfoModel.setImageId(imageId);
       metaImageInfoModel.setTagPositions(tagPositions);
+      metaImageInfoModel.setOriginalFilename(originalFilename);
       metaImageInfoModel.isDeleted = this.isDeleted;
       return metaImageInfoModel;
     }

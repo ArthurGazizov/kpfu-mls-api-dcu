@@ -1,5 +1,6 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.service;
 
+import org.jooq.tools.StringUtils;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dal.MetaImageInfoDao;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.exception.KpfuMlsDcuError;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.model.image.MetaImageInfoModel;
@@ -11,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -31,6 +31,9 @@ public class MetaImageInfoServiceImpl implements MetaImageInfoService {
   public MetaImageInfoModel upload(MultipartFile file, MetaImageInfoModel metaImageInfoModel) {
     final Long imageId = saveFile(file);
     metaImageInfoModel.setImageId(imageId);
+    if (StringUtils.isEmpty(metaImageInfoModel.getOriginalFilename()) && !StringUtils.isEmpty(file.getOriginalFilename())) {
+      metaImageInfoModel.setOriginalFilename(file.getOriginalFilename());
+    }
     return metaImageInfoDao.save(metaImageInfoModel);
   }
 

@@ -27,6 +27,7 @@ public class MetaImageInfoDtoConverterImpl implements MetaImageInfoDtoConverter 
             .imageId(model.getImageId())
             .metaInfoDto(metaInfoConverter.convert(model.getMetaInfoModel()))
             .tagPositionsDto(tagPositionsDtoConverter.convert(model.getTagPositions()))
+            .originalFilename(model.getOriginalFilename())
             .build();
   }
 
@@ -37,6 +38,7 @@ public class MetaImageInfoDtoConverterImpl implements MetaImageInfoDtoConverter 
             .imageId(dto.getImageId())
             .metaInfoModel(metaInfoConverter.convert(dto.getMetaInfoDto()))
             .tagPositions(tagPositionsDtoConverter.convert(dto.getTagPositionsDto()))
+            .originalFilename(dto.getOriginalFilename())
             .build();
   }
 }

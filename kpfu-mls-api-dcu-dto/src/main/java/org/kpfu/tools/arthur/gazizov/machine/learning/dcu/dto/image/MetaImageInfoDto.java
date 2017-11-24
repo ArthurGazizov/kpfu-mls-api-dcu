@@ -34,6 +34,13 @@ public class MetaImageInfoDto extends BaseDto {
   @JsonProperty("tagPositions")
   private TagPositionsDto tagPositionsDto;
 
+  @ApiModelProperty(
+          notes = "Original filename"
+          , name = "originalFilename")
+  @JsonProperty("originalFilename")
+  private String originalFilename;
+
+
   public Long getId() {
     return id;
   }
@@ -58,6 +65,14 @@ public class MetaImageInfoDto extends BaseDto {
     this.tagPositionsDto = tagPositionsDto;
   }
 
+  public String getOriginalFilename() {
+    return originalFilename;
+  }
+
+  public void setOriginalFilename(String originalFilename) {
+    this.originalFilename = originalFilename;
+  }
+
   public static final class Builder {
     protected MetaInfoDto metaInfoDto;
 
@@ -65,6 +80,7 @@ public class MetaImageInfoDto extends BaseDto {
 
     private Long imageId;
     private TagPositionsDto tagPositionsDto;
+    private String originalFilename;
 
     private Builder() {
     }
@@ -93,12 +109,18 @@ public class MetaImageInfoDto extends BaseDto {
       return this;
     }
 
+    public Builder originalFilename(String originalFilename) {
+      this.originalFilename = originalFilename;
+      return this;
+    }
+
     public MetaImageInfoDto build() {
       MetaImageInfoDto metaImageInfoDto = new MetaImageInfoDto();
       metaImageInfoDto.setMetaInfoDto(metaInfoDto);
-      metaImageInfoDto.tagPositionsDto = this.tagPositionsDto;
-      metaImageInfoDto.id = this.id;
-      metaImageInfoDto.imageId = this.imageId;
+      metaImageInfoDto.setId(id);
+      metaImageInfoDto.setImageId(imageId);
+      metaImageInfoDto.setTagPositionsDto(tagPositionsDto);
+      metaImageInfoDto.setOriginalFilename(originalFilename);
       return metaImageInfoDto;
     }
   }

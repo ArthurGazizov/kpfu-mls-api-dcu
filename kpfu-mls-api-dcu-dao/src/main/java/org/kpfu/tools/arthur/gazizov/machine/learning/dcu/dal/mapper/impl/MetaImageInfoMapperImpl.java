@@ -35,8 +35,9 @@ public class MetaImageInfoMapperImpl implements MetaImageInfoMapper {
     return MetaImageInfoModel.Builder.aMetaImageModel()
             .id(record.getValue(META_IMAGE_INFO.META_IMAGE_INFO_ID))
             .imageId(record.getValue(META_IMAGE_INFO.META_IMAGE_INFO_IMAGE_ID))
-            .isDeleted(record.getValue(META_IMAGE_INFO.META_IMAGE_INFOT_IS_DELETED))
+            .isDeleted(record.getValue(META_IMAGE_INFO.META_IMAGE_INFO_IS_DELETED))
             .tagPositions(tagPositionsFromString(record.getValue(META_IMAGE_INFO.META_IMAGE_INFO_TAG_POSITIONS)))
+            .originalFilename(record.getValue(META_IMAGE_INFO.META_IMAGE_INFO_ORIGIN_FILENAME))
             .metaInfoModel(
                     MetaInfoModel.Builder.aMetaInfoEntity()
                             .createdTs(
@@ -61,7 +62,7 @@ public class MetaImageInfoMapperImpl implements MetaImageInfoMapper {
     final MetaImageInfoRecord metaImageInfoRecord = new MetaImageInfoRecord();
     metaImageInfoRecord.setMetaImageInfoImageId(model.getImageId());
     metaImageInfoRecord.setMetaImageInfoTagPositions(tagPositionsToString(model.getTagPositions()));
-    metaImageInfoRecord.setMetaImageInfotIsDeleted(Optional.ofNullable(model.getDeleted()).orElse(false));
+    metaImageInfoRecord.setMetaImageInfoIsDeleted(Optional.ofNullable(model.getDeleted()).orElse(false));
     final MetaInfoModel metaInfoModel = model.getMetaInfoModel();
     if (Objects.nonNull(metaInfoModel)) {
       if (Objects.nonNull(metaInfoModel.getCreatedTs())) {
@@ -72,6 +73,7 @@ public class MetaImageInfoMapperImpl implements MetaImageInfoMapper {
       }
     }
     metaImageInfoRecord.setMetaImageInfoUpdatedTs(Timestamp.valueOf(LocalDateTime.now()));
+    metaImageInfoRecord.setMetaImageInfoOriginFilename(model.getOriginalFilename());
     return metaImageInfoRecord;
   }
 
