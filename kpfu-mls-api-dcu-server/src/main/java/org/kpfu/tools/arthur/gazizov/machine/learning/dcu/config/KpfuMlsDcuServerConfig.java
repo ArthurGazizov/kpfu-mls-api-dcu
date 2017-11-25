@@ -31,7 +31,7 @@ import org.springframework.context.annotation.Import;
 public class KpfuMlsDcuServerConfig {
   @Bean
   @ConfigurationProperties(prefix = "dcu")
-  public KpfuMlsDcuServerConfigurationProperties kpfuMlsDcuConfigurationProperties() {
+  public KpfuMlsDcuServerConfigurationProperties kpfuMlsDcuServerConfigurationProperties() {
     return new KpfuMlsDcuServerConfigurationProperties();
   }
 
