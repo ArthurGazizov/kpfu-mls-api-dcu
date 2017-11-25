@@ -77,5 +77,10 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.kpfu.tools.arthur.gazizov.machine.learning</groupId>
+            <artifactId>kpfu-mls-api-dcu-client</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
