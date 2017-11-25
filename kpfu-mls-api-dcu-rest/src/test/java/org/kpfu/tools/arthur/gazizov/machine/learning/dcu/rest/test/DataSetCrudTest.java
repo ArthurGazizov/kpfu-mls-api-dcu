@@ -15,7 +15,7 @@ import org.springframework.test.context.jdbc.Sql;
         scripts = "classpath:clear.sql",
         executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
 )
-public class TestDataSetCrud extends AbstractTest {
+public class DataSetCrudTest extends AbstractTest {
   @Autowired
   private DcuClient dcuClient;
 
