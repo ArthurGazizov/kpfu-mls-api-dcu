@@ -1,6 +1,7 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.service.inference;
 
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.inference.InferenceDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.exception.KpfuMlsDcuError;
 import org.kpfu.tools.arthur.gazizov.machine.learning.engine.inference.rest.client.EngineInferenceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,10 +22,9 @@ public class InferenceServiceGatewayImpl implements InferenceService {
   public InferenceDto makeInference(Long dataSetId, MultipartFile multipartFile) {
     byte[] bytes = null;
     try {
-      // TODO: 25/11/2017 check that bytes[] == all bytes in file
       bytes = multipartFile.getBytes();
     } catch (IOException e) {
-      e.printStackTrace();
+      throw KpfuMlsDcuError.BYTE_MANIPULATIONS_ERROR.exception(e);
     }
     return engineInferenceClient.makeInference(dataSetId, bytes);
   }

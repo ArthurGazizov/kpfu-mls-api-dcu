@@ -22,7 +22,6 @@ public class InferenceProcessorProxyImpl implements InferenceProcessor {
 
   @Override
   public ResponseEntity<InferenceDto> makeInference(Long dataSetId, MultipartFile multipartFile) {
-    // TODO: 25/11/2017 validation
     Objects.requireNonNull(dataSetId);
     Objects.requireNonNull(multipartFile);
     return inferenceProcessor.makeInference(dataSetId, multipartFile);

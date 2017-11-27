@@ -17,8 +17,11 @@ public enum KpfuMlsDcuError {
 
   META_IMAGE_INFO_NOT_FOUND(1_001_004, HttpStatus.NOT_FOUND, "Meta image info not found"),
 
-
   VALIDATION_ERROR(1_002_001, HttpStatus.BAD_REQUEST, "Validation Error"),
+
+  CLIENT_EXCEPTION(1_003_001, HttpStatus.INTERNAL_SERVER_ERROR, "client error"),
+
+  BYTE_MANIPULATIONS_ERROR(1_003_001, HttpStatus.INTERNAL_SERVER_ERROR, "bytes manipulations error"),
 
   INCORRECT_META_IMAGE_INFO_FORMAT(1_002_002, HttpStatus.BAD_REQUEST, "Incorrect meta image info format error"),
 

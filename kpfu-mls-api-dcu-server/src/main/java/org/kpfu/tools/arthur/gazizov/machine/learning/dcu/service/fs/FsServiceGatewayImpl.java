@@ -1,5 +1,6 @@
 package org.kpfu.tools.arthur.gazizov.machine.learning.dcu.service.fs;
 
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.exception.KpfuMlsDcuError;
 import org.kpfu.tools.arthur.gazizov.machine.learning.fs.client.FsClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,7 @@ public class FsServiceGatewayImpl implements FsService {
       final byte[] bytes = file.getBytes();
       return fsClient.uploadOriginImage(bytes);
     } catch (IOException e) {
-      // TODO: 24/11/2017 specify me
-      throw new RuntimeException(e);
+      throw KpfuMlsDcuError.CLIENT_EXCEPTION.exception(e);
     }
   }
 }
