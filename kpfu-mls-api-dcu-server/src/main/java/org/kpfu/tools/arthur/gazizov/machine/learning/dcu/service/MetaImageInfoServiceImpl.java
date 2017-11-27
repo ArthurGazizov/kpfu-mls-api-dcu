@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -63,8 +64,19 @@ public class MetaImageInfoServiceImpl implements MetaImageInfoService {
 
   @Override
   public MetaImageInfoModel patch(MetaImageInfoModel metaImageInfoModel) {
-    // TODO: 16.11.17 implement me
-    return metaImageInfoDao.update(metaImageInfoModel);
+    final MetaImageInfoModel fromDb = Optional.of(metaImageInfoModel.getId())
+            .map(metaImageInfoDao::find)
+            .orElseThrow(KpfuMlsDcuError.META_IMAGE_INFO_NOT_FOUND::exception);
+    if (Objects.nonNull(metaImageInfoModel.getImageId())) {
+      fromDb.setImageId(metaImageInfoModel.getImageId());
+    }
+    if (Objects.nonNull(metaImageInfoModel.getOriginalFilename())) {
+      fromDb.setOriginalFilename(metaImageInfoModel.getOriginalFilename());
+    }
+    if (Objects.nonNull(metaImageInfoModel.getTagPositions())) {
+      fromDb.setTagPositions(metaImageInfoModel.getTagPositions());
+    }
+    return metaImageInfoDao.update(fromDb);
   }
 
   @Override
