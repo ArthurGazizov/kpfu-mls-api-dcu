@@ -142,7 +142,7 @@ public class DataSetControllerImpl implements DataSetController {
     return DataSetController.super.findAll();
   }
 
-  @ApiOperation(value = "Get page Datasets", notes = "", response = PageResponse.class)
+  @ApiOperation(value = "Get pageDataSets Datasets", notes = "", response = PageResponse.class)
   @ApiResponses(value = {
           @ApiResponse(code = 201, message = "", response = PageResponse.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
@@ -155,11 +155,11 @@ public class DataSetControllerImpl implements DataSetController {
           produces = {"application/json"},
           method = RequestMethod.GET)
   @Override
-  public ResponseEntity<PageResponse<DataSetDto>> findAll(@ApiParam(value = "limit", required = true)
+  public ResponseEntity<PageResponse<DataSetDto>> page(@ApiParam(value = "limit", required = true)
                                                           @RequestParam(value = "limit", required = true) Integer limit,
-                                                          @ApiParam(value = "offset", required = false)
+                                                       @ApiParam(value = "offset", required = false)
                                                           @RequestParam(value = "offset", required = false) Integer offset) {
-    return DataSetController.super.findAll(limit, offset);
+    return DataSetController.super.page(limit, offset);
   }
 
   @Override

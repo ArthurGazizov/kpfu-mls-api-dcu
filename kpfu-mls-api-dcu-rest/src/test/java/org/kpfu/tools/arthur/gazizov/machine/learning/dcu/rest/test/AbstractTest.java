@@ -6,7 +6,12 @@ import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.client.DcuClient;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.client.DcuClientImpl;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.config.KpfuMlsDcuServerConfigurationProperties;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.DataSetDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.DataSetElementDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.TagDto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.base.BaseDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.image.MetaImageInfoDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.image.TagPositionDto;
+import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.image.TagPositionsDto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.dto.meta.MetaInfoDto;
 import org.kpfu.tools.arthur.gazizov.machine.learning.dcu.rest.app.KpfuMlsApiDcuApp;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,7 +31,10 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
@@ -48,6 +56,35 @@ public abstract class AbstractTest {
   protected DataSetDto generateDataSet() {
     return DataSetDto.Builder.aDataSetDto()
             .name(randomName())
+            .build();
+  }
+
+  protected DataSetElementDto generateDataSetElement(DataSetDto dataSetDto) {
+    return DataSetElementDto.Builder.aDataSetElementDto()
+            .datasetId(dataSetDto.getId())
+            .imageId(ThreadLocalRandom.current().nextLong())
+            .build();
+  }
+
+  protected TagDto generateTag() {
+    return TagDto.Builder.aTagDto()
+            .code(randomName())
+            .name(randomName())
+            .build();
+  }
+
+  protected MetaImageInfoDto generateMetaImageInfo(List<TagDto> tags) {
+    return MetaImageInfoDto.Builder.aMetaImageDto()
+            .imageId(ThreadLocalRandom.current().nextLong())
+            .originalFilename(randomName())
+            .tagPositionsDto(
+                    TagPositionsDto.Builder.aTagPositionsDto()
+                            .data(tags.stream()
+                                    .map(t -> TagPositionDto.Builder.aTagPositionDto()
+                                            .tagId(t.getId())
+                                            .build())
+                                    .collect(Collectors.toList()))
+                            .build())
             .build();
   }
 

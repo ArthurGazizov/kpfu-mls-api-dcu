@@ -143,7 +143,7 @@ public class TagControllerImpl implements TagController {
     return TagController.super.findAll();
   }
 
-  @ApiOperation(value = "Get page tags", notes = "", response = PageResponse.class)
+  @ApiOperation(value = "Get pageDataSets tags", notes = "", response = PageResponse.class)
   @ApiResponses(value = {
           @ApiResponse(code = 200, message = "", response = PageResponse.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
@@ -156,11 +156,11 @@ public class TagControllerImpl implements TagController {
           produces = {"application/json"},
           method = RequestMethod.GET)
   @Override
-  public ResponseEntity<PageResponse<TagDto>> findAll(@ApiParam(value = "limit", required = true)
+  public ResponseEntity<PageResponse<TagDto>> page(@ApiParam(value = "limit", required = true)
                                                       @RequestParam(value = "limit", required = true) Integer limit,
-                                                      @ApiParam(value = "offset", required = false)
+                                                   @ApiParam(value = "offset", required = false)
                                                       @RequestParam(value = "offset", required = false) Integer offset) {
-    return TagController.super.findAll(limit, offset);
+    return TagController.super.page(limit, offset);
   }
 
   @Override

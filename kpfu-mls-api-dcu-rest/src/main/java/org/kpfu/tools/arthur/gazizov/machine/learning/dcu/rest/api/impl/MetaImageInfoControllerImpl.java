@@ -150,7 +150,7 @@ public class MetaImageInfoControllerImpl implements MetaImageInfoController {
     return MetaImageInfoController.super.findAll();
   }
 
-  @ApiOperation(value = "Get page meta image info's", notes = "", response = PageResponse.class)
+  @ApiOperation(value = "Get pageDataSets meta image info's", notes = "", response = PageResponse.class)
   @ApiResponses(value = {
           @ApiResponse(code = 200, message = "", response = PageResponse.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
@@ -163,11 +163,11 @@ public class MetaImageInfoControllerImpl implements MetaImageInfoController {
           produces = {"application/json"},
           method = RequestMethod.GET)
   @Override
-  public ResponseEntity<PageResponse<MetaImageInfoDto>> findAll(@ApiParam(value = "limit", required = true)
+  public ResponseEntity<PageResponse<MetaImageInfoDto>> page(@ApiParam(value = "limit", required = true)
                                                                 @RequestParam(value = "limit", required = true) Integer limit,
-                                                                @ApiParam(value = "offset", required = false)
+                                                             @ApiParam(value = "offset", required = false)
                                                                 @RequestParam(value = "offset", required = false) Integer offset) {
-    return MetaImageInfoController.super.findAll(limit, offset);
+    return MetaImageInfoController.super.page(limit, offset);
   }
 
   @Override

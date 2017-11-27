@@ -58,7 +58,7 @@ public class TagProcessorImpl implements TagProcessor {
   }
 
   @Override
-  public ResponseEntity<PageResponse<TagDto>> findAll(Integer limit, Integer offset) {
-    return tagProcessor.findAll(limit, offset);
+  public ResponseEntity<PageResponse<TagDto>> page(Integer limit, Integer offset) {
+    return tagProcessor.page(limit, offset);
   }
 }
