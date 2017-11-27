@@ -36,8 +36,8 @@ public interface CRUDController<T extends Dto> {
     return processor().findAll();
   }
 
-  default ResponseEntity<PageResponse<T>> findAll(Integer limit, Integer offset) {
-    return processor().findAll(limit, offset);
+  default ResponseEntity<PageResponse<T>> page(Integer limit, Integer offset) {
+    return processor().page(limit, offset);
   }
 
   CRUDProcessor<T> processor();

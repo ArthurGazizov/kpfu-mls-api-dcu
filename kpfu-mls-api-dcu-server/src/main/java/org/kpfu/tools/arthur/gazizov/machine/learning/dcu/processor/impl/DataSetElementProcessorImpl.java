@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author Arthur Gazizov (Cinarra Systems)
@@ -60,8 +59,8 @@ public class DataSetElementProcessorImpl implements DataSetElementProcessor {
   }
 
   @Override
-  public ResponseEntity<PageResponse<DataSetElementDto>> findAll(Integer limit, Integer offset) {
-    return dataSetElementProcessor.findAll(limit, offset);
+  public ResponseEntity<PageResponse<DataSetElementDto>> page(Integer limit, Integer offset) {
+    return dataSetElementProcessor.page(limit, offset);
   }
 
   @Override

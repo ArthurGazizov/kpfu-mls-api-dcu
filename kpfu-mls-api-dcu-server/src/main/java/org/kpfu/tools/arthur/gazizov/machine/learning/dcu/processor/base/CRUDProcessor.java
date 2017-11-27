@@ -25,5 +25,5 @@ public interface CRUDProcessor<T extends Dto> {
 
   ResponseEntity<List<T>> findAll();
 
-  ResponseEntity<PageResponse<T>> findAll(Integer limit, Integer offset);
+  ResponseEntity<PageResponse<T>> page(Integer limit, Integer offset);
 }

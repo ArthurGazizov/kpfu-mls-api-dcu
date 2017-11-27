@@ -87,7 +87,7 @@ public class MetaImageInfoProcessorProxyImpl implements MetaImageInfoProcessor {
   }
 
   @Override
-  public ResponseEntity<PageResponse<MetaImageInfoDto>> findAll(Integer limit, Integer offset) {
-    return metaImageInfoProcessor.findAll(limit, offset);
+  public ResponseEntity<PageResponse<MetaImageInfoDto>> page(Integer limit, Integer offset) {
+    return metaImageInfoProcessor.page(limit, offset);
   }
 }

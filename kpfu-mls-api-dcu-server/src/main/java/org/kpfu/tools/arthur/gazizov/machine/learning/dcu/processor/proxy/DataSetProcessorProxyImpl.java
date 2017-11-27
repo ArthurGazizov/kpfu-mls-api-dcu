@@ -75,8 +75,8 @@ public class DataSetProcessorProxyImpl implements DataSetProcessor {
   }
 
   @Override
-  public ResponseEntity<PageResponse<DataSetDto>> findAll(Integer limit, Integer offset) {
+  public ResponseEntity<PageResponse<DataSetDto>> page(Integer limit, Integer offset) {
     Objects.requireNonNull(limit);
-    return dataSetProcessor.findAll(limit, offset);
+    return dataSetProcessor.page(limit, offset);
   }
 }

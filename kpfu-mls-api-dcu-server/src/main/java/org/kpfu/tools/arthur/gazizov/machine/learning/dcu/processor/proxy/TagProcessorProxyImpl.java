@@ -75,8 +75,8 @@ public class TagProcessorProxyImpl implements TagProcessor {
   }
 
   @Override
-  public ResponseEntity<PageResponse<TagDto>> findAll(Integer limit, Integer offset) {
+  public ResponseEntity<PageResponse<TagDto>> page(Integer limit, Integer offset) {
     Objects.requireNonNull(limit);
-    return tagProcessor.findAll(limit, offset);
+    return tagProcessor.page(limit, offset);
   }
 }

@@ -72,7 +72,7 @@ public abstract class AbstractCRUDProcessorImpl<T extends Dto, M extends Model> 
   }
 
   @Override
-  public ResponseEntity<PageResponse<T>> findAll(Integer limit, Integer offset) {
+  public ResponseEntity<PageResponse<T>> page(Integer limit, Integer offset) {
     final PageModel<M> pageModel = crudService().findAll(limit, offset);
     final PageResponse<T> pageResponse = PageResponse.Builder.<T>aPageResponse()
             .data(pageModel.getData().stream()

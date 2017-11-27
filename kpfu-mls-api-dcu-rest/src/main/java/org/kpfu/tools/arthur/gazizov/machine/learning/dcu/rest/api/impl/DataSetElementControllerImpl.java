@@ -142,7 +142,7 @@ public class DataSetElementControllerImpl implements DataSetElementController {
     return DataSetElementController.super.findAll();
   }
 
-  @ApiOperation(value = "Get page Datasets elements", notes = "", response = PageResponse.class)
+  @ApiOperation(value = "Get pageDataSets Datasets elements", notes = "", response = PageResponse.class)
   @ApiResponses(value = {
           @ApiResponse(code = 201, message = "", response = PageResponse.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
@@ -155,11 +155,11 @@ public class DataSetElementControllerImpl implements DataSetElementController {
           produces = {"application/json"},
           method = RequestMethod.GET)
   @Override
-  public ResponseEntity<PageResponse<DataSetElementDto>> findAll(@ApiParam(value = "limit", required = true)
-                                                                 @RequestParam(value = "limit", required = true) Integer limit,
-                                                                 @ApiParam(value = "offset", required = false)
-                                                                 @RequestParam(value = "offset", required = false) Integer offset) {
-    return DataSetElementController.super.findAll(limit, offset);
+  public ResponseEntity<PageResponse<DataSetElementDto>> page(@ApiParam(value = "limit", required = true)
+                                                              @RequestParam(value = "limit", required = true) Integer limit,
+                                                              @ApiParam(value = "offset", required = false)
+                                                              @RequestParam(value = "offset", required = false) Integer offset) {
+    return DataSetElementController.super.page(limit, offset);
   }
 
   @Override
@@ -167,7 +167,7 @@ public class DataSetElementControllerImpl implements DataSetElementController {
     return dataSetElementProcessor;
   }
 
-  @ApiOperation(value = "Get page dataset's elements by data set id", notes = "", response = PageResponse.class)
+  @ApiOperation(value = "Get pageDataSets dataset's elements by data set id", notes = "", response = PageResponse.class)
   @ApiResponses(value = {
           @ApiResponse(code = 201, message = "", response = PageResponse.class),
           @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
@@ -202,7 +202,8 @@ public class DataSetElementControllerImpl implements DataSetElementController {
           produces = {"application/json"},
           method = RequestMethod.GET)
   @Override
-  public ResponseEntity<Integer> elementsCountInDataSet(Long dataSetId) {
+  public ResponseEntity<Integer> elementsCountInDataSet(@ApiParam(value = "dataSetId", required = true)
+                                                        @PathVariable(value = "dataSetId") Long dataSetId) {
     return dataSetElementProcessor.elementsCountInDataSet(dataSetId);
   }
 }
