@@ -162,6 +162,29 @@ public class DataSetControllerImpl implements DataSetController {
     return DataSetController.super.page(limit, offset);
   }
 
+  static class Msg extends PageResponse<DataSetDto> {
+
+  }
+
+  @ApiOperation(value = "Get pageDataSets Datasets", notes = "", response = Msg.class)
+  @ApiResponses(value = {
+          @ApiResponse(code = 201, message = "", response = Msg.class),
+          @ApiResponse(code = 400, message = "Bad request", response = ErrorDto.class),
+          @ApiResponse(code = 401, message = "Unauthorized", response = ErrorDto.class),
+          @ApiResponse(code = 403, message = "Access Denied/Forbidden", response = ErrorDto.class),
+          @ApiResponse(code = 500, message = "Something exceptional happened", response = ErrorDto.class)
+  })
+  @RequestMapping(
+          value = "/dataset/testss",
+          produces = {"application/json"},
+          method = RequestMethod.GET)
+  public ResponseEntity<Msg> test(@ApiParam(value = "limit", required = true)
+                                                       @RequestParam(value = "limit", required = true) Integer limit,
+                                                       @ApiParam(value = "offset", required = false)
+                                                       @RequestParam(value = "offset", required = false) Integer offset) {
+    return ResponseEntity.ok(new Msg());
+  }
+
   @Override
   public CRUDProcessor<DataSetDto> processor() {
     return dataSetProcessor;
